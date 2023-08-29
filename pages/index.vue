@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <TheHero />
+  <div class="container mx-auto"><TheHero /></div>
 </template>
 
 <style scoped></style>

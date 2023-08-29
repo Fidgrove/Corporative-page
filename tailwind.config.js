@@ -13,6 +13,16 @@ module.exports = {
     fontFamily: {
       montserrat: ["Montserrat", "sans-serif"],
     },
+    extend: {
+      colors: {
+        transparent: "transparent",
+        current: "currentColor",
+        white: "#eaeaea",
+        black: "#15223f",
+        red: "#f70f1c",
+        blue: "#42c3fa",
+      },
+    },
   },
   plugins: [],
 };
