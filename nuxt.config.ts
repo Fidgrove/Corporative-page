@@ -5,5 +5,6 @@ export default defineNuxtConfig({
     head:{
       title: 'Fidgrove',
     }
-  }
+  },
+  modules: ['@nuxtjs/tailwindcss']
 })
