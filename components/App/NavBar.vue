@@ -6,14 +6,19 @@ const navigation = [
 </script>
 
 <template>
-  <div class="flex justify-center">
-    <NuxtLink
-      v-for="item in navigation"
-      :key="item.name"
-      :to="item.link"
-      class="text-black rounded-md px-3 py-2 font-medium navbar-item"
-      >{{ item.name }}
+  <div class="flex flex-col items-center">
+    <NuxtLink to="/">
+      <img src="/img/logo.png" alt="Fidgrove" class="w-60" />
     </NuxtLink>
+    <div class="flex">
+      <NuxtLink
+        v-for="item in navigation"
+        :key="item.name"
+        :to="item.link"
+        class="text-black rounded-md px-3 py-2 font-medium navbar-item"
+        >{{ item.name }}
+      </NuxtLink>
+    </div>
   </div>
 </template>
 
