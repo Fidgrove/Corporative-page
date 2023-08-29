@@ -1,0 +1,57 @@
+.navbar-item {
+  @apply relative;
+  &:after,
+  &:before {
+    content: '';
+    position: absolute;
+    height: 2px;
+    width: 0;
+    transform: translate(-50%);
+    left: 50%;
+    transition: all 0.3s;
+  }
+  &:before {
+    bottom: 0;
+    @apply bg-red;
+  }
+
+  &:after {
+    bottom: -8px;
+    @apply bg-blue;
+  }
+
+  &:hover {
+    background: transparent;
+
+    &:before {
+      width: 100%;
+    }
+
+    &:after {
+      width: 80%;
+    }
+  }
+  &.is-active {
+    &:after,
+    &:before {
+      content: '';
+      position: absolute;
+      height: 2px;
+      transform: translate(-50%);
+      left: 50%;
+      transition: all 0.3s;
+    }
+
+    &:before {
+      width: 100%;
+      bottom: 0;
+      @apply bg-red;
+    }
+
+    &:after {
+      width: 80%;
+      bottom: -8px;
+      @apply bg-blue;
+    }
+  }
+}
