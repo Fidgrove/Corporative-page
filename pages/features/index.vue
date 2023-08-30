@@ -1,15 +1,6 @@
 <script setup lang="ts">
-interface Post {
-  id: number;
-  title: string;
-  body: string;
-}
-const features: Ref<[]> = ref([]);
-const { data: posts } = await useAsyncData<Post[]>("posts", () =>
-  $fetch("https://jsonplaceholder.typicode.com/posts/"),
-);
-features.value =
-  !posts.value || !posts.value.length ? [] : posts.value.slice(0, 12);
+import { features } from "~/public/utils";
+const formattedSlug = (text: string) => text.toLowerCase().split(" ").join("-");
 </script>
 
 <template>
@@ -22,9 +13,10 @@ features.value =
         :to="{
           name: 'features-slug',
           params: {
-            slug: item.title,
+            slug: formattedSlug(item.title),
           },
         }"
+        class="transition-transform duration-300 hover:scale-105"
       >
         <BaseFeatureCard :item="item" />
       </NuxtLink>

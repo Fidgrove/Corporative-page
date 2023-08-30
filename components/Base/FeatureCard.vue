@@ -1,11 +1,18 @@
 <script setup lang="ts">
 const props = defineProps(["item"]);
+const trimmedText = (text: string) => text.slice(0, 30) + "...";
 </script>
 
 <template>
   <div class="shadow-md p-6">
-    <h3 class="text-xl font-medium mb-2">{{ item.title }}</h3>
-    <p>{{ item.body }}</p>
+    <img :src="`/img/${item.image}`" :alt="item.title" />
+    <h3 class="text-xl font-medium my-4" v-text="item.title" />
+    <template v-if="item.text">
+      <p>{{ trimmedText(item.text) }}</p>
+    </template>
+    <template v-else>
+      <p>{{ trimmedText(item.list[0]) }}</p>
+    </template>
   </div>
 </template>
 
