@@ -1,12 +1,13 @@
 export const features: object[] = [
   {
-    id: 1,
+    slug: "rfactor-2-sim-support",
     title: "rFactor 2 Sim Support",
     image: "sessions.png",
-    text: `Fidgrove supports all licensed content on <a href="https://www.studio-397.com/" target="_blank">rFactor 2 </a>esports platform, including mods based on them (e.g., league mods, "sub-versions" with BoP). You can browse <a href="https://www.studio-397.com/" target="_blank">rFactor 2's </a> licensed or fictional content in the dynamic tables we created with handy information (e.g., last updated, car engine type, package Steam ID, etc) <a href="https://support.fidgrove.com/" target="_blank">here</a>.<br/><br/>
+    text: `Fidgrove supports all licensed content on <a href="https://www.studio-397.com/" target="_blank" class="text-sky-400">rFactor 2 </a>esports platform, including mods based on them (e.g., league mods, "sub-versions" with BoP). You can browse <a href="https://www.studio-397.com/" target="_blank">rFactor 2's </a> licensed or fictional content in the dynamic tables we created with handy information (e.g., last updated, car engine type, package Steam ID, etc) <a href="https://support.fidgrove.com/" target="_blank">here</a>.<br/><br/>
             No need for configurations. Fidgrove’s DataLogger keeps track of all version numbers of the cars & tracks used, validating if the content has been tampered with (e.g., car physics).`,
   },
   {
+    slug: "effortless-data-management",
     title: "Effortless Data Management",
     image: "r_factor.png",
     list: [
@@ -16,6 +17,7 @@ export const features: object[] = [
     ],
   },
   {
+    slug: "integrated-key-analysis-tools",
     title: "Integrated key analysis tools",
     image: "analysis.png",
     list: [
@@ -26,6 +28,7 @@ export const features: object[] = [
   },
 
   {
+    slug: "communities-to-compare-performance",
     title: "Communities to compare performance",
     image: "community.png",
     list: [

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { features } from "~/public/utils";
-const formattedSlug = (text: string) => text.toLowerCase().split(" ").join("-");
 </script>
 
 <template>
@@ -13,7 +12,7 @@ const formattedSlug = (text: string) => text.toLowerCase().split(" ").join("-");
         :to="{
           name: 'features-slug',
           params: {
-            slug: formattedSlug(item.title),
+            slug: item.slug,
           },
         }"
         class="transition-transform duration-300 hover:scale-105"
