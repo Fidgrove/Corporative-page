@@ -13,12 +13,18 @@
 
 @font-face {
   font-family: Montserrat;
-  font-weight: 800;
-  src: url("~/assets/fonts/Montserrat/Montserrat-Bold.ttf") format("truetype");
+  font-weight: 500;
+  src: url("~/assets/fonts/Montserrat/Montserrat-Medium.ttf") format("truetype");
 }
 
 @font-face {
   font-family: Montserrat;
-  font-weight: 500;
-  src: url("~/assets/fonts/Montserrat/Montserrat-Medium.ttf") format("truetype");
+  font-weight: 600;
+  src: url("~/assets/fonts/Montserrat/Montserrat-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Montserrat;
+  font-weight: 800;
+  src: url("~/assets/fonts/Montserrat/Montserrat-Bold.ttf") format("truetype");
 }

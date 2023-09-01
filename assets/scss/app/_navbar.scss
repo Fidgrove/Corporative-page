@@ -22,6 +22,7 @@
 
   &:hover {
     background: transparent;
+    @apply text-sky-400;
 
     &:before {
       width: 100%;
@@ -32,6 +33,7 @@
     }
   }
   &.is-active {
+    @apply text-sky-400;
     &:after,
     &:before {
       content: '';

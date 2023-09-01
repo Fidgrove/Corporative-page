@@ -1,5 +1,9 @@
 <script setup lang="ts">
-const props = defineProps(["item"]);
+import { Feature } from "~/types";
+interface FeatureProps {
+  item: Feature;
+}
+const props = defineProps<FeatureProps>();
 const trimmedText = (text: string) => text.slice(0, 30) + "...";
 </script>
 
@@ -10,7 +14,7 @@ const trimmedText = (text: string) => text.slice(0, 30) + "...";
     <template v-if="item.text">
       <p>{{ trimmedText(item.text) }}</p>
     </template>
-    <template v-else>
+    <template v-else-if="item.list">
       <p>{{ trimmedText(item.list[0]) }}</p>
     </template>
   </div>

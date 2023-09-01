@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { features } from "~/public/utils";
+import { teamsFeatures } from "~/public/utils";
 const route = useRoute();
 const feature = computed(() =>
-  features.find((el) => el.title === route.params.slug),
+  teamsFeatures.find((el) => el.title === route.params.slug),
 );
 </script>
 
