@@ -4,7 +4,7 @@ import { membershipPlans } from "~/public/utils";
 
 <template>
   <div class="flex gap-6">
-    <div v-for="plan in membershipPlans" :key="plan.id" class="grow basis-1">
+    <div v-for="plan in membershipPlans" :key="plan.title" class="grow basis-1">
       <BasePriceCard :plan="plan" class="h-full" />
     </div>
   </div>

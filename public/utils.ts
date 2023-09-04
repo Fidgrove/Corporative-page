@@ -94,9 +94,14 @@ export const membershipPlans: Plan[] = [
     },
   },
   {
-    title: "Premium Membership (Teams)",
+    title: "Annual Premium Membership (Teams)",
     subtitle: "Free for the first month!",
+    accentItem: {
+      idx: 0,
+      class: "text-sky-400",
+    },
     items: [
+      "Support Fidgrove dev. & op. expenses",
       "Access to all Free features",
       "Unlimited teams and active events",
       "AI-assisted Race Strategy Planner based on your own race prep team data",
@@ -114,9 +119,14 @@ export const membershipPlans: Plan[] = [
     },
   },
   {
-    title: "Premium Membership <br/>(pay for teammate)",
+    title: "Annual Premium Membership <br/>(pay for teammate)",
     subtitle: "Free for the first month!",
+    accentItem: {
+      idx: 0,
+      class: "text-sky-400",
+    },
     items: [
+      "Support Fidgrove dev. & op. expenses",
       "Purchase Premium Membership for teammate",
       "Gives access to all features listed in the Teams Premium subscription",
     ],

@@ -4,6 +4,8 @@ interface PlanProps {
   plan: Plan;
 }
 const props = defineProps<PlanProps>();
+
+const checkTBD = (text: string) => text.includes("TBD");
 </script>
 
 <template>
@@ -33,10 +35,16 @@ const props = defineProps<PlanProps>();
       :class="{ 'py-0 mt-6 pt-4': !plan.price.origin }"
     >
       <li
-        v-for="item in plan.items"
+        v-for="(item, idx) in plan.items"
         :key="item"
         v-text="item"
         class="before:content-['\2713'] before:-ml-8 before:mr-5 pl-8 pb-2"
+        :class="[
+          checkTBD(item) && 'text-gray-400',
+          plan.accentItem &&
+            idx === plan.accentItem.idx &&
+            plan.accentItem.class,
+        ]"
       />
     </ul>
     <div class="flex justify-center pb-5">
