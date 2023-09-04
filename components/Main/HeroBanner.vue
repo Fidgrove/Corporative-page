@@ -1,13 +1,13 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="flex flex-col items-center mt-10">
+  <div class="flex flex-col items-center mt-6 lg:mt-10">
     <img
       src="/img/cards.jpg"
       alt="Fidgrove Features"
       class="lg:w-4/6 lg:h-96 object-cover"
     />
-    <div class="my-16 max-w-screen-md">
+    <div class="my-6 lg:my-16 max-w-screen-md">
       <p
         class="pb-4 text-left"
         v-text="
