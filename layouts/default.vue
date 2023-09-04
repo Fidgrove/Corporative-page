@@ -1,9 +1,11 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div>
+  <div class="min-h-screen flex flex-col">
     <AppNavBar />
-    <slot />
+    <div class="grow container mx-auto px-4">
+      <slot />
+    </div>
     <AppFooter />
   </div>
 </template>
