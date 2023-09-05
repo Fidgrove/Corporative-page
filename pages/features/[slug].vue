@@ -7,18 +7,5 @@ const feature = computed(() =>
 </script>
 
 <template>
-  <div class="mt-8 mb-6 lg:mb-16">
-    <h1 class="text-3xl font-medium mb-6" v-text="feature?.title" />
-    <img :src="`/img/${feature?.image}`" :alt="feature?.title" />
-    <template v-if="feature?.text">
-      <p class="mt-6" v-html="feature?.text" />
-    </template>
-    <template v-else>
-      <ul class="list-disc list-outside mt-6 ml-6">
-        <li v-for="el in feature?.list" :key="el" v-text="el" class="pb-4" />
-      </ul>
-    </template>
-  </div>
+  <BaseArticle :item="feature" />
 </template>
-
-<style scoped></style>

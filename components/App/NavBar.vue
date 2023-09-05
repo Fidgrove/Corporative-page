@@ -8,9 +8,9 @@ const navigation = [
 <template>
   <div class="flex flex-col items-center">
     <NuxtLink to="/">
-      <img src="/img/logo.png" alt="Fidgrove" class="w-60" />
+      <img src="/img/logo.png" alt="Fidgrove" class="w-40 lg:w-60" />
     </NuxtLink>
-    <div class="flex mt-6">
+    <div class="flex mt-2 lg:mt-6">
       <NuxtLink
         v-for="item in navigation"
         :key="item.name"
