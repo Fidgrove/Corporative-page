@@ -7,5 +7,5 @@ const feature = computed(() =>
 </script>
 
 <template>
-  <BaseArticle :item="feature" />
+  <FeaturesArticle :item="feature" />
 </template>
