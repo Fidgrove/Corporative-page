@@ -41,6 +41,7 @@ const toggleNav = () => (showMenu.value = !showMenu.value);
         :key="item.name"
         :to="item.link"
         class="text-black rounded-md px-3 pt-7 pb-3 md:pb-0 md:py-2 font-normal navbar-item"
+        @click="toggleNav"
         >{{ item.name }}
       </NuxtLink>
       <div class="flex pt-9 md:pt-1 md:absolute right-4 -top-14">
