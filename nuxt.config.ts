@@ -6,7 +6,7 @@ export default defineNuxtConfig({
       title: "Fidgrove",
     },
   },
-  modules: ["@nuxtjs/tailwindcss"],
+  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/svg-sprite"],
   css: ["@/assets/scss/main.scss"],
   router: {
     options: {
