@@ -1,7 +1,11 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div><MainHeroBanner /><MainPricingSection /></div>
+  <div>
+    <MainHeroBanner id="home" />
+    <MainFeaturesSection id="features" />
+    <MainPricingSection id="pricing" />
+  </div>
 </template>
 
 <style scoped></style>

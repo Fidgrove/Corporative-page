@@ -1,8 +1,5 @@
 <script setup lang="ts">
-const navigation = [
-  { name: "Main Features", link: "/features" },
-  { name: "Team Features", link: "/team" },
-];
+import { navigation } from "~/public/utils";
 </script>
 
 <template>

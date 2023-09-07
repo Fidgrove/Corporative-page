@@ -1,3 +1,8 @@
+export interface MenuItem {
+  name: string
+  link: string
+}
+
 export interface Feature {
   title: string;
   image: string;

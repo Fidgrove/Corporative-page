@@ -1,5 +1,13 @@
-import { Feature, Plan } from "~/types";
+import { Feature, Plan, MenuItem } from "~/types";
 
+export const navigation: MenuItem[] = [
+  { name: "Home", link: "/#home" },
+  { name: "Features", link: "/#features" },
+  { name: "Track Records", link: "/#track-records" },
+  { name: "FAQ", link: "/#faq" },
+  { name: "Pricing", link: "/#pricing" },
+  { name: "About", link: "/#about" },
+];
 export const features: Feature[] = [
   {
     title: "rFactor 2 Sim Support",
@@ -72,7 +80,6 @@ export const teamsFeatures: Feature[] = [
     ],
   },
 ];
-
 export const membershipPlans: Plan[] = [
   {
     title: "Free Membership",

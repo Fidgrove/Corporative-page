@@ -21,7 +21,6 @@ const props = defineProps<ArticlesProps>();
             slug: item.title,
           },
         }"
-        class="transition-transform duration-300 hover:scale-105"
       >
         <BaseFeatureCard :item="item" />
       </NuxtLink>
