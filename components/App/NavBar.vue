@@ -6,7 +6,7 @@ const toggleNav = () => (showMenu.value = !showMenu.value);
 </script>
 
 <template>
-  <div class="flex flex-col pt-2 px-4 md:relative fixed w-full bg-bckg">
+  <div class="flex flex-col pt-2 pb-4 px-4 fixed w-full bg-bckg">
     <div class="flex justify-center items-center">
       <div>
         <NuxtLink to="/#home">

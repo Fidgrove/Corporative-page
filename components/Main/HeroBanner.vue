@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="flex flex-col items-center mt-6 lg:mt-8">
+  <div class="flex flex-col items-center">
     <img
       src="/img/cards.jpg"
       alt="Fidgrove Features"
