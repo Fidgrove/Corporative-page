@@ -39,21 +39,32 @@
       content: "";
       position: absolute;
       height: 2px;
-      transform: translate(-50%);
-      left: 50%;
+      transform: translate(0);
+      left: 0;
       transition: all 0.3s;
+      @screen md {
+        transform: translate(-50%);
+        left: 50%;
+      }
     }
 
     &:before {
-      width: 100%;
+      width: 120px;
       bottom: 0;
       @apply bg-red;
+      @screen md {
+        width: 100%;
+      }
     }
 
     &:after {
-      width: 80%;
-      bottom: -8px;
+      width: 130px;
+      bottom: -5px;
       @apply bg-blue;
+      @screen md {
+        width: 80%;
+        bottom: -8px;
+      }
     }
   }
 }
