@@ -37,7 +37,6 @@ const checkTBD = (text: string) => text.includes("TBD");
       <li
         v-for="(item, idx) in plan.items"
         :key="item"
-        v-text="item"
         class="before:content-['\2713'] before:-ml-8 before:mr-5 pl-8 pb-2"
         :class="[
           checkTBD(item) && 'text-gray-400',
@@ -45,6 +44,7 @@ const checkTBD = (text: string) => text.includes("TBD");
             idx === plan.accentItem.idx &&
             plan.accentItem.class,
         ]"
+        v-text="item"
       />
     </ul>
     <div class="flex justify-center pb-5">
@@ -52,7 +52,7 @@ const checkTBD = (text: string) => text.includes("TBD");
         tag="a"
         :href="plan.cta.link"
         target="_blank"
-        class="rounded font-medium text-sky-400 border border-sky-400 px-4 py-2"
+        class="rounded transition-colors border border-blue px-4 py-2 font-medium hover:text-white hover:bg-blue bg-white text-blue"
       >
         {{ plan.cta.text }}
       </NuxtLink>

@@ -2,8 +2,7 @@
 
 <template>
   <div>
-    <MainHeroBanner id="home" />
-    <MainFeaturesSection id="features" />
+    <MainPricingSection id="pricing" />
   </div>
 </template>
 

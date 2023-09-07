@@ -6,12 +6,12 @@
   html {
     font-family: "Montserrat", ui-sans-serif;
     font-weight: 300;
-    @apply bg-white;
+    @apply bg-bckg;
     @apply text-black;
   }
   p {
     a {
-      @apply text-sky-400;
+      @apply text-blue;
     }
   }
 }

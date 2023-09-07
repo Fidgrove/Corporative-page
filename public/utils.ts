@@ -5,14 +5,13 @@ export const navigation: MenuItem[] = [
   { name: "Features", link: "/#features" },
   { name: "Track Records", link: "/#track-records" },
   { name: "FAQ", link: "/#faq" },
-  { name: "Pricing", link: "/#pricing" },
   { name: "About", link: "/#about" },
 ];
 export const features: Feature[] = [
   {
     title: "rFactor 2 Sim Support",
     image: "sessions.png",
-    text: `Fidgrove supports all licensed content on <a href="https://www.studio-397.com/" target="_blank" class="text-sky-400">rFactor 2 </a>esports platform, including mods based on them (e.g., league mods, "sub-versions" with BoP). You can browse <a href="https://www.studio-397.com/" target="_blank">rFactor 2's </a> licensed or fictional content in the dynamic tables we created with handy information (e.g., last updated, car engine type, package Steam ID, etc) <a href="https://support.fidgrove.com/" target="_blank">here</a>.<br/><br/>
+    text: `Fidgrove supports all licensed content on <a href="https://www.studio-397.com/" target="_blank" class="text-blue">rFactor 2 </a>esports platform, including mods based on them (e.g., league mods, "sub-versions" with BoP). You can browse <a href="https://www.studio-397.com/" target="_blank">rFactor 2's </a> licensed or fictional content in the dynamic tables we created with handy information (e.g., last updated, car engine type, package Steam ID, etc) <a href="https://support.fidgrove.com/" target="_blank">here</a>.<br/><br/>
             No need for configurations. Fidgrove’s DataLogger keeps track of all version numbers of the cars & tracks used, validating if the content has been tampered with (e.g., car physics).`,
   },
   {
@@ -48,7 +47,7 @@ export const teamsFeatures: Feature[] = [
   {
     title: "Team rFactor 2 Sim Support",
     image: "sessions.png",
-    text: `Fidgrove supports all licensed content on <a href="https://www.studio-397.com/" target="_blank" class="text-sky-400">rFactor 2 </a>esports platform, including mods based on them (e.g., league mods, "sub-versions" with BoP). You can browse <a href="https://www.studio-397.com/" target="_blank">rFactor 2's </a> licensed or fictional content in the dynamic tables we created with handy information (e.g., last updated, car engine type, package Steam ID, etc) <a href="https://support.fidgrove.com/" target="_blank">here</a>.<br/><br/>
+    text: `Fidgrove supports all licensed content on <a href="https://www.studio-397.com/" target="_blank" class="text-blue">rFactor 2 </a>esports platform, including mods based on them (e.g., league mods, "sub-versions" with BoP). You can browse <a href="https://www.studio-397.com/" target="_blank">rFactor 2's </a> licensed or fictional content in the dynamic tables we created with handy information (e.g., last updated, car engine type, package Steam ID, etc) <a href="https://support.fidgrove.com/" target="_blank">here</a>.<br/><br/>
             No need for configurations. Fidgrove’s DataLogger keeps track of all version numbers of the cars & tracks used, validating if the content has been tampered with (e.g., car physics).`,
   },
   {
@@ -105,7 +104,7 @@ export const membershipPlans: Plan[] = [
     subtitle: "Free for the first month!",
     accentItem: {
       idx: 0,
-      class: "text-sky-400",
+      class: "text-blue",
     },
     items: [
       "Support Fidgrove dev. & op. expenses",
@@ -130,7 +129,7 @@ export const membershipPlans: Plan[] = [
     subtitle: "Free for the first month!",
     accentItem: {
       idx: 0,
-      class: "text-sky-400",
+      class: "blue",
     },
     items: [
       "Support Fidgrove dev. & op. expenses",
