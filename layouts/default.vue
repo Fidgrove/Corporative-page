@@ -6,7 +6,7 @@
     <div class="grow container mx-auto px-4">
       <slot />
     </div>
-    <AppFooter />
+    <AppMainFooter />
   </div>
 </template>
 

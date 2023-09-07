@@ -9,6 +9,9 @@ module.exports = {
     parser: "@typescript-eslint/parser",
   },
   extends: ["@nuxtjs/eslint-config-typescript", "plugin:prettier/recommended"],
-  plugins: ['prettier'],
-  rules: {},
+  plugins: ["prettier"],
+  rules: {
+    "vue/attributes-order": 1,
+    "vue/script-setup-uses-vars": 1,
+  },
 };
