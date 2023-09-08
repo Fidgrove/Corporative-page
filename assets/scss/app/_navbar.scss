@@ -25,11 +25,11 @@
     @apply text-blue;
 
     &:before {
-      width: 100%;
+      width: 75%;
     }
 
     &:after {
-      width: 80%;
+      width: 55%;
     }
   }
   &.is-active {

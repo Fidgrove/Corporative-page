@@ -4,7 +4,7 @@ import { features } from "~/public/utils";
 
 <template>
   <section class="mt-8 mb-6 lg:mb-16 lg:w-4/6 mx-auto">
-    <h2 class="text-2xl text-center font-semibold mb-6" v-text="'Features'" />
+    <h2 class="text-2xl text-left font-semibold mb-6" v-text="'Features'" />
     <FeaturesArticleGrid
       :features="features"
       title="Main Features"

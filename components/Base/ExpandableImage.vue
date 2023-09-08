@@ -1,0 +1,27 @@
+<script setup lang="ts">
+interface ImageProps {
+  imgSrc: string;
+  alt: string;
+}
+const props = defineProps<ImageProps>();
+
+const zoomImage: Ref<boolean> = ref(false);
+</script>
+
+<template>
+  <section
+    class="cursor-pointer"
+    :class="[
+      zoomImage
+        ? 'absolute flex items-center justify-center bg-black px-10 top-0 left-0 w-full h-full'
+        : 'border-blue border rounded overflow-hidden',
+    ]"
+    @click="zoomImage = !zoomImage"
+  >
+    <button v-if="zoomImage" class="absolute right-20 top-10 h-8">
+      <span class="block w-8 h-0.5 bg-gray-600 rotate-[45deg]" />
+      <span class="block w-8 h-0.5 bg-gray-600 -mt-0.5 -rotate-[45deg]" />
+    </button>
+    <img :src="`/img/${imgSrc}`" :alt="alt" class="object-cover mx-auto" />
+  </section>
+</template>
