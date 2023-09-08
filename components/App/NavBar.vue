@@ -6,10 +6,10 @@ const toggleNav = () => (showMenu.value = !showMenu.value);
 </script>
 
 <template>
-  <div class="flex flex-col pt-2 pb-4 px-4 fixed w-full bg-bckg">
+  <div class="flex flex-col pt-2 pb-4 px-4 fixed md:static w-full bg-bckg">
     <div class="flex justify-center items-center">
       <div>
-        <NuxtLink to="/">
+        <NuxtLink to="/" @click="showMenu = false">
           <img src="/img/logo.png" alt="Fidgrove" class="w-40 md:w-45" />
         </NuxtLink>
         <div class="flex md:hidden absolute right-4 top-6" @click="toggleNav">
@@ -41,7 +41,7 @@ const toggleNav = () => (showMenu.value = !showMenu.value);
         :key="item.name"
         :to="item.link"
         class="text-black rounded-md px-6 pt-7 pb-3 md:pb-0 md:py-2 font-normal navbar-item"
-        @click="toggleNav"
+        @click="showMenu = false"
         >{{ item.name }}
       </NuxtLink>
       <div class="flex pt-9 md:pt-1 md:absolute right-4 -top-14">
@@ -71,6 +71,7 @@ const toggleNav = () => (showMenu.value = !showMenu.value);
         <Nuxt-link
           to="/membership"
           class="ml-4 transition-colors rounded border border-blue px-3 py-1.5 text-sm font-medium hover:text-white hover:bg-blue bg-white text-blue"
+          @click="showMenu = false"
         >
           Sign Up
         </Nuxt-link>
