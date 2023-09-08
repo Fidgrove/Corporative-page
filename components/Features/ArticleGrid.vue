@@ -8,7 +8,7 @@ const props = defineProps<ArticlesProps>();
 </script>
 
 <template>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-16">
     <NuxtLink
       v-for="item in features"
       :key="item.title"
