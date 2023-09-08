@@ -7,10 +7,12 @@ const props = defineProps<FeatureProps>();
 </script>
 
 <template>
-  <div
-    class="border border-blue rounded h-full p-6 transition-colors bg-white hover:text-blue"
-  >
-    <img :src="`/img/${item.image}`" :alt="item.title" />
+  <div class="h-full transition-colors hover:text-blue">
+    <img
+      :src="`/img/${item.image}`"
+      :alt="item.title"
+      class="border border-blue"
+    />
     <h3 class="text-xl my-4" v-text="item.title" />
   </div>
 </template>
