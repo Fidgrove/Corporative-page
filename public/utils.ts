@@ -1,11 +1,11 @@
 import { Feature, Plan, MenuItem } from "~/types";
 
 export const navigation: MenuItem[] = [
-  { name: "Home", link: "/#home" },
-  { name: "Features", link: "/#features" },
-  { name: "Track Records", link: "/#track-records" },
-  { name: "FAQ", link: "/#faq" },
-  { name: "About", link: "/#about" },
+  { name: "Home", link: "/" },
+  { name: "Features", link: "/features" },
+  { name: "Track Records", link: "/track-records" },
+  { name: "FAQ", link: "/faq" },
+  { name: "About", link: "/about" },
 ];
 export const features: Feature[] = [
   {

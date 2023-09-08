@@ -1,5 +1,5 @@
 <template>
-  <section class="flex flex-col items-center mt-8 mb-6 lg:mb-16">
+  <section class="flex flex-col items-center">
     <img
       src="/img/cards.jpg"
       alt="Fidgrove Features"

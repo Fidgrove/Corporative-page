@@ -9,7 +9,7 @@ const toggleNav = () => (showMenu.value = !showMenu.value);
   <div class="flex flex-col pt-2 pb-4 px-4 fixed w-full bg-bckg">
     <div class="flex justify-center items-center">
       <div>
-        <NuxtLink to="/#home">
+        <NuxtLink to="/">
           <img src="/img/logo.png" alt="Fidgrove" class="w-40 md:w-45" />
         </NuxtLink>
         <div class="flex md:hidden absolute right-4 top-6" @click="toggleNav">
@@ -40,7 +40,7 @@ const toggleNav = () => (showMenu.value = !showMenu.value);
         v-for="item in navigation"
         :key="item.name"
         :to="item.link"
-        class="text-black rounded-md px-3 pt-7 pb-3 md:pb-0 md:py-2 font-normal navbar-item"
+        class="text-black rounded-md px-6 pt-7 pb-3 md:pb-0 md:py-2 font-normal navbar-item"
         @click="toggleNav"
         >{{ item.name }}
       </NuxtLink>
@@ -48,7 +48,7 @@ const toggleNav = () => (showMenu.value = !showMenu.value);
         <Nuxt-link
           target="_blank"
           rel="noopener noreferrer"
-          href="https://discord.gg/PcuaKYMs8Y"
+          href="https://x.com/fidgrove"
           class="navbar-button w-6 ml-4"
         >
           <svg-icon name="twitter" />
@@ -56,7 +56,7 @@ const toggleNav = () => (showMenu.value = !showMenu.value);
         <Nuxt-link
           target="_blank"
           rel="noopener noreferrer"
-          href="https://twitter.com/fidgrove"
+          href="https://discord.gg/PcuaKYMs8Y"
           class="navbar-button w-8 ml-4"
         >
           <svg-icon name="discord" />

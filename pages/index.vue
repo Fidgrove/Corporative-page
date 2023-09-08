@@ -1,11 +1,5 @@
-<script setup lang="ts"></script>
-
 <template>
-  <div class="lg:w-4/6 mx-auto">
-    <MainHeroBanner id="home" />
-    <MainFeaturesSection id="features" />
-    <MainAboutSection id="about" />
-  </div>
+  <section class="mt-8 mb-6 lg:mb-16 lg:w-4/6 mx-auto">
+    <MainHeroBanner />
+  </section>
 </template>
-
-<style scoped></style>

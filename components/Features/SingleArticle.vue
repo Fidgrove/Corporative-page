@@ -7,13 +7,13 @@ const props = defineProps<FeatureProps>();
 </script>
 
 <template>
-  <article class="mb-6 lg:mb-16">
+  <article>
     <img
       :src="`/img/${item?.image}`"
       :alt="item?.title"
       class="lg:w-4/6 object-cover mx-auto border-blue border rounded mb-6"
     />
-    <h1 class="text-3xl font-medium mb-6 text-center" v-text="item?.title" />
+    <h1 class="text-3xl font-normal mb-6 text-left" v-text="item?.title" />
     <template v-if="item?.text">
       <section class="mt-6" v-html="item?.text" />
     </template>
