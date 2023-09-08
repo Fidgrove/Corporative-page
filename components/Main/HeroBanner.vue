@@ -1,6 +1,10 @@
 <template>
   <section class="flex flex-col items-center">
-    <BaseExpandableImage :img-src="'cards.jpg'" alt="Fidgrove Features" />
+    <BaseExpandableImage
+      :img-src="'cards.jpg'"
+      add-class="h-52"
+      alt="Fidgrove Features"
+    />
     <div class="mt-6 lg:mt-16">
       <p
         class="pb-4 text-left"
