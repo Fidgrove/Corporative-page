@@ -17,7 +17,7 @@ const props = defineProps<FeatureProps>();
     <template v-if="item?.text">
       <p class="mt-6" v-html="item?.text" />
     </template>
-    <template v-else>
+    <template v-if="item?.list">
       <ul class="list-disc list-outside mt-6 ml-6">
         <li v-for="el in item?.list" :key="el" class="pb-4" v-text="el" />
       </ul>

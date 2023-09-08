@@ -8,7 +8,7 @@ const props = defineProps<FeatureProps>();
 
 <template>
   <div
-    class="border border-blue rounded p-6 transition-colors bg-white hover:text-blue"
+    class="border border-blue rounded h-full p-6 transition-colors bg-white hover:text-blue"
   >
     <img :src="`/img/${item.image}`" :alt="item.title" />
     <h3 class="text-xl font-medium my-4" v-text="item.title" />
