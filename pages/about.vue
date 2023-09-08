@@ -1,7 +1,6 @@
 <template>
   <section class="mt-8 mb-6 lg:mb-16 lg:w-4/6 mx-auto">
-    <h2 class="text-2xl text-center font-semibold mb-6" v-text="'About'" />
-
+    <h1 class="text-4xl text-left font-semibold mb-6" v-text="'About'" />
     <blockquote class="border-t border-b border-blue italic py-5 px-6 mb-8">
       “It's been a while and I can't get this idea out of my head. And that's
       it. It's gonna happen.” - Ricardo Diz, Founder of Fidgrove

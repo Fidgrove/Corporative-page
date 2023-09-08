@@ -7,7 +7,7 @@ const feature = computed(() =>
 </script>
 
 <template>
-  <section class="mt-8 mb-6 lg:mb-16 mx-auto">
+  <section class="mt-0 mb-6 lg:mb-16 mx-auto">
     <FeaturesSingleArticle
       v-if="feature"
       :item="feature"
