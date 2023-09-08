@@ -5,7 +5,7 @@
     <img
       src="/img/cards.jpg"
       alt="Fidgrove Features"
-      class="lg:w-4/6 lg:h-96 object-cover"
+      class="lg:h-96 object-cover"
     />
     <div class="my-6 lg:my-16 max-w-screen-md">
       <p

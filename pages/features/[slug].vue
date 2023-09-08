@@ -7,5 +7,9 @@ const feature = computed(() =>
 </script>
 
 <template>
-  <FeaturesSingleArticle :item="feature" v-if="feature" />
+  <FeaturesSingleArticle
+    v-if="feature"
+    :item="feature"
+    class="lg:w-4/6 mx-auto"
+  />
 </template>
