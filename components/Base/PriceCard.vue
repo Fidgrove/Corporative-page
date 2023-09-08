@@ -9,7 +9,7 @@ const checkTBD = (text: string) => text.includes("TBD");
 </script>
 
 <template>
-  <div class="shadow-lg rounded-md flex flex-col">
+  <div class="border border-blue rounded-md flex flex-col bg-white">
     <div
       class="bg-black flex items-center justify-center p-5 rounded-t-md min-h-[7rem]"
     >
@@ -35,15 +35,10 @@ const checkTBD = (text: string) => text.includes("TBD");
       :class="{ 'py-0 mt-6 pt-4': !plan.price.origin }"
     >
       <li
-        v-for="(item, idx) in plan.items"
+        v-for="item in plan.items"
         :key="item"
         class="before:content-['\2713'] before:-ml-8 before:mr-5 pl-8 pb-2"
-        :class="[
-          checkTBD(item) && 'text-gray-400',
-          plan.accentItem &&
-            idx === plan.accentItem.idx &&
-            plan.accentItem.class,
-        ]"
+        :class="[checkTBD(item) && 'text-gray-400']"
         v-text="item"
       />
     </ul>
@@ -59,5 +54,3 @@ const checkTBD = (text: string) => text.includes("TBD");
     </div>
   </div>
 </template>
-
-<style scoped></style>

@@ -1,13 +1,11 @@
-<script setup lang="ts"></script>
-
 <template>
-  <div class="flex flex-col items-center">
+  <section class="flex flex-col items-center mt-8 mb-6 lg:mb-16">
     <img
       src="/img/cards.jpg"
       alt="Fidgrove Features"
       class="lg:h-96 object-cover"
     />
-    <div class="my-6 lg:my-16 max-w-screen-md">
+    <div class="mt-6 lg:mt-16 max-w-screen-md">
       <p
         class="pb-4 text-left"
         v-text="
@@ -21,7 +19,5 @@
         "
       />
     </div>
-  </div>
+  </section>
 </template>
-
-<style scoped></style>
