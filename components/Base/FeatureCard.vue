@@ -9,7 +9,7 @@ const props = defineProps<FeatureProps>();
 <template>
   <div class="h-full transition-colors hover:text-blue">
     <img
-      :src="`/img/${item.image}`"
+      :src="`/img/minified/${item.image}`"
       :alt="item.title"
       class="border border-blue"
     />
