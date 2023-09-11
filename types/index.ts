@@ -16,3 +16,27 @@ export interface Plan {
   price: { origin?: string; actual: string; period?: string };
   cta: { text: string; link: string };
 }
+
+interface TableHeader {
+  name: string;
+  property?: string;
+  class?: string;
+  hidden?: boolean;
+}
+
+export interface Table {
+  isLink?: boolean;
+  header: TableHeader[];
+}
+
+export interface TableHandler {
+  table: Table;
+  mapResult: unknown;
+}
+export interface RecordsTableRow {
+  trackName: string;
+  carName: string;
+  lapTime: number;
+  createdDate: string;
+  username: string;
+}

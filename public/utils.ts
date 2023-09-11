@@ -1,4 +1,4 @@
-import { Feature, Plan, MenuItem } from "~/types";
+import { Feature, Plan, MenuItem, TableHandler } from "~/types";
 
 export const navigation: MenuItem[] = [
   { name: "Home", link: "/" },
@@ -109,3 +109,68 @@ export const membershipPlans: Plan[] = [
     },
   },
 ];
+
+export const trackRecords: TableHandler = {
+  table: {
+    isLink: true,
+    header: [
+      {
+        name: "Track",
+        class: "text-left",
+        property: "trackName",
+      },
+      {
+        name: "Car",
+        class: "text-left",
+        property: "carName",
+      },
+      {
+        name: "Lap Time",
+        class: "text-left",
+        property: "lapTime",
+      },
+      {
+        name: "Date",
+        class: "text-right",
+        property: "createdDate",
+      },
+      {
+        name: "Driver",
+        class: "text-left",
+        property: "username",
+      },
+      {
+        name: "trackTemperature",
+        hidden: true,
+      },
+      {
+        name: "avgPathWetness",
+        hidden: true,
+      },
+      {
+        name: "umbrellaTrackId",
+        hidden: true,
+      },
+    ],
+  },
+  mapResult: ({
+    trackName,
+    carName,
+    createdDate,
+    lapTime,
+    trackTemperature,
+    avgPathWetness,
+    username,
+    umbrellaTrackId,
+  }) => ({
+    trackName,
+    carName,
+    lapTime: lapTime && lapTime > 0 ? lapTime : "-",
+    createdDate,
+    username,
+    trackTemperature:
+      trackTemperature && trackTemperature ? `${trackTemperature} ºC` : "-",
+    avgPathWetness: avgPathWetness ? `${avgPathWetness * 100} %` : "-",
+    umbrellaTrackId,
+  }),
+};
