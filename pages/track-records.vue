@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { trackRecords } from "public/utils";
-import { RecordsTableRow } from "~/types";
+import { RecordsTableRow, TableSort } from "~/types";
 
 interface RecordsTableRows {
   results: RecordsTableRow[];
 }
+
+const sortable: Ref<TableSort> = ref({ sort: "createdDate", asc: true });
 
 const result: RecordsTableRows = reactive({
   results: [
@@ -111,12 +113,20 @@ const filteredResult = computed(() => {
     trackRecords.mapResult(val),
   );
 });
+const onSort = (sortParams: TableSort) => {
+  sortable.value = sortParams;
+};
 </script>
 
 <template>
   <section
     class="mt-8 mb-6 lg:mb-16 mx-auto overflow-x-scroll sm:overflow-x-auto"
   >
-    <RecordsDataTable :list="filteredResult" :handler="trackRecords" />
+    <RecordsDataTable
+      :list="filteredResult"
+      :handler="trackRecords"
+      :sortable="sortable"
+      @sort="onSort"
+    />
   </section>
 </template>

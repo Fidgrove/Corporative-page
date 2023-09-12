@@ -22,6 +22,7 @@ interface TableHeader {
   property?: string;
   class?: string;
   hidden?: boolean;
+  sortable?: boolean;
 }
 
 export interface Table {
@@ -32,6 +33,11 @@ export interface Table {
 export interface TableHandler {
   table: Table;
   mapResult: any;
+}
+
+export interface TableSort {
+  sort: string;
+  asc: boolean;
 }
 export interface RecordsTableRow {
   trackName: string;

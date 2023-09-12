@@ -115,27 +115,30 @@ export const trackRecords: TableHandler = {
     header: [
       {
         name: "Track",
-        class: "text-left",
+        class: "justify-start",
+        sortable: true,
         property: "trackName",
       },
       {
         name: "Car",
-        class: "text-left",
+        class: "justify-start",
+        sortable: true,
         property: "carName",
       },
       {
         name: "Lap Time",
-        class: "text-left",
+        class: "justify-start",
         property: "lapTime",
       },
       {
         name: "Date",
-        class: "text-right",
+        class: "justify-end",
+        sortable: true,
         property: "createdDate",
       },
       {
         name: "Driver",
-        class: "text-left",
+        class: "justify-start",
         property: "username",
       },
       {
