@@ -5,6 +5,7 @@ import {
   TableHandler,
   RecordsTableRow,
 } from "~/types";
+import { useSecondsToReadableTime } from "~/composables/timeFormatting";
 
 export const navigation: MenuItem[] = [
   { name: "Home", link: "/" },
@@ -158,7 +159,7 @@ export const trackRecords: TableHandler = {
   }: RecordsTableRow): { [key: string]: string } => ({
     trackName,
     carName,
-    lapTime: lapTime && lapTime > 0 ? lapTime : "-",
+    lapTime: lapTime && lapTime > 0 ? useSecondsToReadableTime(lapTime) : "-",
     createdDate,
     username,
     trackTemperature:
