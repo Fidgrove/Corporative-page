@@ -114,7 +114,9 @@ const filteredResult = computed(() => {
 </script>
 
 <template>
-  <section class="mt-8 mb-6 lg:mb-16 mx-auto">
+  <section
+    class="mt-8 mb-6 lg:mb-16 mx-auto overflow-x-scroll sm:overflow-x-auto"
+  >
     <RecordsDataTable :list="filteredResult" :handler="trackRecords" />
   </section>
 </template>
