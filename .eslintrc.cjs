@@ -13,5 +13,6 @@ module.exports = {
   rules: {
     "vue/attributes-order": 1,
     "vue/script-setup-uses-vars": 1,
+    "vue/multi-word-component-names": "off",
   },
 };

@@ -1,4 +1,10 @@
-import { Feature, Plan, MenuItem, TableHandler } from "~/types";
+import {
+  Feature,
+  Plan,
+  MenuItem,
+  TableHandler,
+  RecordsTableRow,
+} from "~/types";
 
 export const navigation: MenuItem[] = [
   { name: "Home", link: "/" },
@@ -64,10 +70,6 @@ export const membershipPlans: Plan[] = [
   {
     title: "Annual Premium Membership (Teams)",
     subtitle: "Free for the first month!",
-    accentItem: {
-      idx: 0,
-      class: "text-blue",
-    },
     items: [
       "Support Fidgrove dev. & op. expenses",
       "Access to all Free features",
@@ -89,10 +91,6 @@ export const membershipPlans: Plan[] = [
   {
     title: "Annual Premium Membership <br/>(pay for teammate)",
     subtitle: "Free for the first month!",
-    accentItem: {
-      idx: 0,
-      class: "blue",
-    },
     items: [
       "Support Fidgrove dev. & op. expenses",
       "Purchase Premium Membership for teammate",
@@ -147,10 +145,6 @@ export const trackRecords: TableHandler = {
         name: "avgPathWetness",
         hidden: true,
       },
-      {
-        name: "umbrellaTrackId",
-        hidden: true,
-      },
     ],
   },
   mapResult: ({
@@ -161,8 +155,7 @@ export const trackRecords: TableHandler = {
     trackTemperature,
     avgPathWetness,
     username,
-    umbrellaTrackId,
-  }) => ({
+  }: RecordsTableRow): { [key: string]: string } => ({
     trackName,
     carName,
     lapTime: lapTime && lapTime > 0 ? lapTime : "-",
@@ -171,6 +164,5 @@ export const trackRecords: TableHandler = {
     trackTemperature:
       trackTemperature && trackTemperature ? `${trackTemperature} ºC` : "-",
     avgPathWetness: avgPathWetness ? `${avgPathWetness * 100} %` : "-",
-    umbrellaTrackId,
   }),
 };
