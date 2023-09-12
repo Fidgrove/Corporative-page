@@ -31,7 +31,7 @@ export interface Table {
 
 export interface TableHandler {
   table: Table;
-  mapResult: unknown;
+  mapResult: any;
 }
 export interface RecordsTableRow {
   trackName: string;
@@ -39,4 +39,7 @@ export interface RecordsTableRow {
   lapTime: number;
   createdDate: string;
   username: string;
+  trackTemperature: number;
+  avgPathWetness: number;
+  umbrellaTrackId: number;
 }

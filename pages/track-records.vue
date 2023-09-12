@@ -115,8 +115,6 @@ const filteredResult = computed(() => {
 
 <template>
   <section class="mt-8 mb-6 lg:mb-16 mx-auto">
-    <RecordsTable :list="filteredResult" :handler="trackRecords" />
+    <RecordsDataTable :list="filteredResult" :handler="trackRecords" />
   </section>
 </template>
-
-<style scoped></style>

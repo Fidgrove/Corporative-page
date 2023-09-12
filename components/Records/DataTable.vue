@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { Table, RecordsTableRow } from "~/types";
+import { TableHandler, RecordsTableRow } from "~/types";
 
 interface TableProps {
   list: RecordsTableRow[];
-  handler: Table;
+  handler: TableHandler;
 }
 const props = defineProps<TableProps>();
 </script>
@@ -18,7 +18,7 @@ const props = defineProps<TableProps>();
       <tr class="border-solid border-b border-neutral-300">
         <th
           v-for="header in handler.table.header"
-          :key="header"
+          :key="header.property"
           class="font-medium py-1 px-2"
           :class="[header.class || 'text-right', header.hidden ? 'hidden' : '']"
         >
