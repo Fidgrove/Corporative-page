@@ -8,6 +8,7 @@ import {
 } from "~/types";
 import { useApiRequest } from "~/composables/apiCall";
 
+const racePaces: Ref<boolean> = ref(false);
 const sortable: Ref<TableSort> = ref({ sort: "createdDate", asc: true });
 const params: RequestParams = reactive({
   offset: 0,
@@ -21,7 +22,9 @@ const filteredResult: { list: RecordsTableRow[] } = reactive({ list: [] });
 
 const getTrackRecords = () =>
   useApiRequest<RequestResponse>(
-    "support/v1/communities/track-records",
+    racePaces.value
+      ? "support/v1/communities/race-paces"
+      : "support/v1/communities/track-records",
     params,
     {
       transform: (data: RequestResponse) => {
@@ -43,14 +46,11 @@ const onSort = async (sortParams: TableSort) => {
   pending.value = result.pending.value;
 };
 
-watch(
-  () => params.dry,
-  async () => {
-    pending.value = true;
-    const result = await getTrackRecords();
-    pending.value = result.pending.value;
-  },
-);
+watch([() => params.dry, racePaces], async () => {
+  pending.value = true;
+  const result = await getTrackRecords();
+  pending.value = result.pending.value;
+});
 </script>
 
 <template>
@@ -63,6 +63,12 @@ watch(
         right-label="Wet"
         :value="params.dry"
         @toggle="params.dry = !params.dry"
+      />
+      <BaseToggler
+        label="1 Lap"
+        right-label="10 Laps"
+        :value="!racePaces"
+        @toggle="racePaces = !racePaces"
       />
     </div>
     <template v-if="pending">
