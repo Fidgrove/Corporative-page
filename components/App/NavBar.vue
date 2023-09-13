@@ -40,7 +40,7 @@ const toggleNav = () => (showMenu.value = !showMenu.value);
         v-for="item in navigation"
         :key="item.name"
         :to="item.link"
-        class="text-black rounded-md px-6 pt-7 pb-3 md:pb-0 md:py-2 font-normal navbar-item"
+        class="text-black rounded-md px-6 pt-7 pb-3 md:pb-1 md:py-2 font-normal navbar-item"
         @click="showMenu = false"
         >{{ item.name }}
       </NuxtLink>

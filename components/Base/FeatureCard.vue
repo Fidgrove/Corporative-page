@@ -13,7 +13,7 @@ const props = defineProps<FeatureProps>();
       :alt="item.title"
       class="border border-blue"
     />
-    <h3 class="text-xl my-4" v-text="item.title" />
+    <h3 class="my-4" v-text="item.title" />
   </div>
 </template>
 
