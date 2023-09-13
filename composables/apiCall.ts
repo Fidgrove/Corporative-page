@@ -22,5 +22,6 @@ export const useApiRequestReset = ({ sort, asc }: TableSort) => {
     sort,
     direction: asc,
     dry: true,
+    search: "",
   };
 };

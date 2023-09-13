@@ -8,6 +8,7 @@ import {
 } from "~/types";
 import { useApiRequest } from "~/composables/apiCall";
 
+const searchQuery: Ref<string> = ref("");
 const racePaces: Ref<boolean> = ref(false);
 const sortable: Ref<TableSort> = ref({ sort: "createdDate", asc: true });
 const params: RequestParams = reactive({
@@ -16,6 +17,7 @@ const params: RequestParams = reactive({
   sort: "createdDate",
   direction: "DESC",
   dry: true,
+  search: "",
 });
 
 const filteredResult: { list: RecordsTableRow[] } = reactive({ list: [] });
@@ -28,6 +30,7 @@ const getTrackRecords = () =>
     params,
     {
       transform: (data: RequestResponse) => {
+        searchQuery.value = data.search || "";
         filteredResult.list = data.results.map((item: RecordsTableRow) =>
           trackRecords.mapResult(item),
         );
@@ -51,6 +54,14 @@ watch([() => params.dry, racePaces], async () => {
   const result = await getTrackRecords();
   pending.value = result.pending.value;
 });
+watch(searchQuery, async (val) => {
+  if (val.length > 2 || !val) {
+    params.search = searchQuery.value;
+    pending.value = true;
+    const result = await getTrackRecords();
+    pending.value = result.pending.value;
+  }
+});
 </script>
 
 <template>
@@ -58,6 +69,15 @@ watch([() => params.dry, racePaces], async () => {
     class="mt-8 mb-6 lg:mb-16 mx-auto overflow-x-scroll sm:overflow-x-auto"
   >
     <div class="flex justify-between">
+      <input
+        v-model="searchQuery"
+        class="w-40 h-10 px-2 rounded-md focus:outline-blue focus:shadow-blue placeholder-dark bg-white placeholder-opacity-50"
+        type="search"
+        name="search"
+        autofocus
+        autocomplete="off"
+        placeholder="Search"
+      />
       <BaseToggler
         label="Dry"
         right-label="Wet"
