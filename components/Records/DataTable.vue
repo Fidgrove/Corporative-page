@@ -72,7 +72,7 @@ const sortColumn = (sort: string | undefined, asc: boolean) => {
       <tr
         v-for="(row, idx) in list"
         :key="idx"
-        class="cursor-pointer hover:bg-blue hover:text-white even:bg-neutral-300"
+        class="cursor-pointer hover:bg-blue hover:text-white"
       >
         <td
           v-for="(val, key, i) in row"
