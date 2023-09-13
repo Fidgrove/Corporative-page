@@ -38,15 +38,33 @@ const onSort = async (sortParams: TableSort) => {
   sortable.value = sortParams;
   params.sort = sortParams.sort;
   params.direction = sortParams.asc ? "ASC" : "DESC";
+  pending.value = true;
   const result = await getTrackRecords();
   pending.value = result.pending.value;
 };
+
+watch(
+  () => params.dry,
+  async () => {
+    pending.value = true;
+    const result = await getTrackRecords();
+    pending.value = result.pending.value;
+  },
+);
 </script>
 
 <template>
   <section
     class="mt-8 mb-6 lg:mb-16 mx-auto overflow-x-scroll sm:overflow-x-auto"
   >
+    <div class="flex justify-between">
+      <BaseToggler
+        label="Dry"
+        right-label="Wet"
+        :value="params.dry"
+        @toggle="params.dry = !params.dry"
+      />
+    </div>
     <template v-if="pending">
       <span>Loading...</span>
     </template>
