@@ -6,6 +6,11 @@ export default defineNuxtConfig({
       title: "Fidgrove",
     },
   },
+  runtimeConfig: {
+    public: {
+      appUrl: process.env.NUXT_ENV_API_URL || "http://localhost:3000",
+    },
+  },
   modules: ["@nuxtjs/tailwindcss", "@nuxtjs/svg-sprite"],
   css: ["@/assets/scss/main.scss"],
   router: {

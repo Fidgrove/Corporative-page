@@ -128,6 +128,7 @@ export const trackRecords: TableHandler = {
       {
         name: "Lap Time",
         class: "justify-start",
+        sortable: true,
         property: "lapTime",
       },
       {

@@ -49,3 +49,27 @@ export interface RecordsTableRow {
   avgPathWetness: number;
   umbrellaTrackId: number;
 }
+
+export interface RequestParams {
+  offset: number;
+  limit: number;
+  sort: string;
+  direction: "ASC" | "DESC";
+  search?: string;
+  dry: boolean;
+  filters?: string[];
+}
+
+export interface RequestResponse {
+  results: RecordsTableRow[];
+  search?: string | null;
+  filters?: string[];
+  metadata: {
+    count: number;
+    direction: "ASC" | "DESC";
+    limit: number;
+    offset: number;
+    sort: string;
+    total: number;
+  };
+}
