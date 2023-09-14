@@ -71,5 +71,5 @@ export interface RequestResponse {
     offset: number;
     sort: string;
     total: number;
-  };
+  } | null;
 }

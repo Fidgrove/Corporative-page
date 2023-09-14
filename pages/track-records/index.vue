@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import InfiniteLoading from "v3-infinite-loading";
 import { trackRecords } from "public/utils";
 import {
   RecordsTableRow,
@@ -6,7 +7,7 @@ import {
   RequestResponse,
   TableSort,
 } from "~/types";
-import { useApiRequest } from "~/composables/apiCall";
+import { useApiRequest, useApiRequestReset } from "~/composables/apiCall";
 
 interface RecordsProps {
   search: string;
@@ -15,11 +16,14 @@ interface RecordsProps {
 }
 const props = defineProps<RecordsProps>();
 
+const dataOffset: Ref<number> = ref(0);
+const dataItemsLimit: Ref<number> = ref(20);
 const sortable: Ref<TableSort> = ref({ sort: "createdDate", asc: true });
+const dataMetadata: Ref<RequestResponse["metadata"]> = ref(null);
 const params = computed<RequestParams>(() => {
   return {
-    offset: 0,
-    limit: 20,
+    offset: dataOffset.value,
+    limit: dataItemsLimit.value,
     sort: sortable.value.sort,
     direction: sortable.value.asc ? "ASC" : "DESC",
     dry: props.dry,
@@ -29,22 +33,34 @@ const params = computed<RequestParams>(() => {
 
 const filteredResult: { list: RecordsTableRow[] } = reactive({ list: [] });
 
-const getTrackRecords = () =>
-  useApiRequest<RequestResponse>(
+const getTrackRecords = (reset = true) => {
+  if (reset) {
+    const { offset, limit } = useApiRequestReset();
+    dataOffset.value = offset;
+    dataItemsLimit.value = limit;
+  }
+  return useApiRequest<RequestResponse>(
     props.racePaces
       ? "support/v1/communities/race-paces"
       : "support/v1/communities/track-records",
     params.value,
     {
       transform: (data: RequestResponse) => {
-        filteredResult.list = data.results.map((item: RecordsTableRow) =>
+        dataMetadata.value = data.metadata;
+        const newFilteredData = data.results.map((item: RecordsTableRow) =>
           trackRecords.mapResult(item),
         );
+        if (reset) {
+          dataOffset.value += dataItemsLimit.value;
+          filteredResult.list = newFilteredData;
+        } else {
+          dataOffset.value += dataItemsLimit.value;
+          filteredResult.list = [...filteredResult.list, ...newFilteredData];
+        }
       },
     },
   );
-
-defineExpose({ sortable });
+};
 
 const { pending } = await getTrackRecords();
 
@@ -76,19 +92,12 @@ watch(
   <section
     class="mt-8 mb-6 lg:mb-16 mx-auto overflow-x-scroll sm:overflow-x-auto"
   >
-    <template v-if="pending">
-      <span>Loading...</span>
-    </template>
-    <template v-else-if="filteredResult.list.length">
-      <RecordsDataTable
-        :list="filteredResult.list"
-        :handler="trackRecords"
-        :sortable="sortable"
-        @sort="onSort"
-      />
-    </template>
-    <template v-else>
-      <span>Sth went wrong</span>
-    </template>
+    <RecordsDataTable
+      :list="filteredResult.list"
+      :handler="trackRecords"
+      :sortable="sortable"
+      @sort="onSort"
+    />
+    <InfiniteLoading @infinite="getTrackRecords(false)" />
   </section>
 </template>

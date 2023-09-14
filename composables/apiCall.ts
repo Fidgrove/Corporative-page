@@ -1,4 +1,4 @@
-import { RequestParams, TableSort } from "~/types";
+import { RequestParams } from "~/types";
 
 export const useApiRequest = <T>(
   url: string,
@@ -15,13 +15,9 @@ export const useApiRequest = <T>(
   });
 };
 
-export const useApiRequestReset = ({ sort, asc }: TableSort) => {
+export const useApiRequestReset = () => {
   return {
     offset: 0,
     limit: 20,
-    sort,
-    direction: asc,
-    dry: true,
-    search: "",
   };
 };
