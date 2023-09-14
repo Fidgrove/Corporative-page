@@ -11,7 +11,7 @@ export default defineNuxtConfig({
       appUrl: process.env.NUXT_ENV_API_URL || "http://localhost:3000",
     },
   },
-  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/svg-sprite"],
+  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/svg-sprite", "floating-vue/nuxt"],
   css: ["@/assets/scss/main.scss"],
   router: {
     options: {

@@ -73,6 +73,17 @@ const sortColumn = (sort: string | undefined, asc: boolean) => {
       <tr
         v-for="(row, idx) in list"
         :key="idx"
+        v-tooltip="
+          handler.table.tooltip && {
+            html: true,
+            delay: handler.table.tooltip.delay || {
+              show: 500,
+              hide: 200,
+            },
+            placement: handler.table.tooltip.placement || 'bottom-end',
+            content: handler.table.tooltip.render(row),
+          }
+        "
         class="hover:bg-blue hover:text-white"
         :class="{ 'cursor-pointer': clickableRow }"
         @click="clickableRow ? $emit('row-click', row) : null"

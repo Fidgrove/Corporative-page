@@ -88,7 +88,8 @@ const linkToNextLevel = (val: RecordsTableRow) => {
 };
 watch(
   () => props.dry,
-  async () => {
+  async (val) => {
+    trackRecords.wetSession = !val;
     await getTrackRecords(true);
     filteredResult.list = dataPage.value;
   },

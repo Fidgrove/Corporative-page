@@ -1,0 +1,10 @@
+.v-popper__popper[data-popper-placement=bottom-end]{
+  & .v-popper__arrow-container {
+    margin-left: 1rem;
+  }
+}
+.v-popper__popper[data-popper-placement=bottom-start]{
+  & .v-popper__arrow-container {
+    margin-left: -(1rem);
+  }
+}

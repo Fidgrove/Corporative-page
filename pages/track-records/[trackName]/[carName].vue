@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import InfiniteLoading from "v3-infinite-loading";
-import { trackRecordsTrackCar } from "public/utils";
+import { trackRecordsTrack, trackRecordsTrackCar } from "public/utils";
 import {
   RecordsTableRow,
   RequestParams,
@@ -85,7 +85,8 @@ const onSort = async (sortParams: TableSort) => {
 };
 watch(
   () => props.dry,
-  async () => {
+  async (val) => {
+    trackRecordsTrackCar.wetSession = !val;
     await getTrackRecords(true);
     filteredResult.list = dataPage.value;
   },

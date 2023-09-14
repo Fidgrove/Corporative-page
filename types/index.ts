@@ -27,10 +27,16 @@ interface TableHeader {
 
 export interface Table {
   header: TableHeader[];
+  tooltip?: {
+    delay?: { show: number; hide: number };
+    placement?: string;
+    render: (row: any) => string;
+  };
 }
 
 export interface TableHandler {
   racePaces: boolean;
+  wetSession: boolean;
   table: Table;
   mapResult: any;
 }

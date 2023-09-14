@@ -112,8 +112,19 @@ export const membershipPlans: Plan[] = [
 ];
 
 export const trackRecords: TableHandler = {
+  wetSession: false,
   racePaces: false,
   table: {
+    tooltip: {
+      render(row: RecordsTableRow) {
+        const { trackTemperature, avgPathWetness } = row;
+        const waterOnTrackTooltip = `<b class="pr-1 font-medium tabular-nums lining-nums">Water on Track:</b> ${avgPathWetness}<br />`;
+        return `
+					<b class="pr-1 font-medium tabular-nums lining-nums">Track Temperature:</b> ${trackTemperature}<br />
+					${trackRecords.wetSession ? waterOnTrackTooltip : ""}
+				`;
+      },
+    },
     header: [
       {
         name: "Track",
@@ -195,14 +206,30 @@ export const trackRecords: TableHandler = {
       username: username || "-",
       umbrellaTrackId: umbrellaTrackId.toString() || "-",
       trackTemperature:
-        trackTemperature && trackTemperature ? `${trackTemperature} ºC` : "-",
-      avgPathWetness: avgPathWetness ? `${avgPathWetness * 100} %` : "-",
+        trackTemperature && trackTemperature
+          ? `${trackTemperature.toFixed(1)} ºC`
+          : "-",
+      avgPathWetness: avgPathWetness
+        ? `${(avgPathWetness * 100).toFixed(1)} %`
+        : "-",
     };
   },
 };
 export const trackRecordsTrack: TableHandler = {
+  wetSession: false,
   racePaces: false,
   table: {
+    tooltip: {
+      render(row: RecordsTrackTableRow) {
+        const { trackTemperature, avgPathWetness, trackVersion } = row;
+        const waterOnTrackTooltip = `<b class="pr-1 font-medium tabular-nums lining-nums"">Water on Track:</b> ${avgPathWetness}<br />`;
+        return `
+					<b class="pr-1 font-medium tabular-nums lining-nums"">Track Temperature:</b> ${trackTemperature}<br />
+					${trackRecordsTrack.wetSession ? waterOnTrackTooltip : ""}
+					<b class="pr-1 font-medium tabular-nums lining-nums"">Track Version:</b> ${trackVersion}
+				`;
+      },
+    },
     header: [
       {
         name: "Car",
@@ -322,17 +349,32 @@ export const trackRecordsTrack: TableHandler = {
           : "-",
       createdDate: createdDate || "-",
       username: username || "-",
-      trackTemperature:
-        trackTemperature && trackTemperature ? `${trackTemperature} ºC` : "-",
       trackVersion: trackVersion || "-",
       umbrellaCarId: umbrellaCarId.toString() || "-",
-      avgPathWetness: avgPathWetness ? `${avgPathWetness * 100} %` : "-",
+      trackTemperature:
+        trackTemperature && trackTemperature
+          ? `${trackTemperature.toFixed(1)} ºC`
+          : "-",
+      avgPathWetness: avgPathWetness
+        ? `${(avgPathWetness * 100).toFixed(1)} %`
+        : "-",
     };
   },
 };
 export const trackRecordsTrackCar: TableHandler = {
+  wetSession: false,
   racePaces: false,
   table: {
+    tooltip: {
+      render(row: RecordsTrackCarTableRow) {
+        const { trackTemperature, trackVersion, carVersion } = row;
+        return `
+					<b class="pr-1">Track Temperature:</b> ${trackTemperature}<br />
+					<b class="pr-1">Track Version:</b> ${trackVersion} <br />
+					<b class="pr-1">Car Version:</b> ${carVersion}
+				`;
+      },
+    },
     header: [
       {
         name: "Rank",
@@ -409,6 +451,15 @@ export const trackRecordsTrackCar: TableHandler = {
         },
       },
       {
+        name: "Water on Track",
+        class: "justify-center",
+        sortable: true,
+        property: "avgPathWetness",
+        get hidden() {
+          return !trackRecordsTrackCar.wetSession;
+        },
+      },
+      {
         name: "Date",
         class: "justify-start",
         sortable: true,
@@ -423,7 +474,6 @@ export const trackRecordsTrackCar: TableHandler = {
       { name: "trackTemperature", hidden: true },
       { name: "trackVersion", hidden: true },
       { name: "carVersion", hidden: true },
-      { name: "avgPathWetness", hidden: true },
     ],
   },
   mapResult: ({
@@ -436,12 +486,12 @@ export const trackRecordsTrackCar: TableHandler = {
     sectorThree,
     bestLapTime,
     bestSectorsLap,
+    avgPathWetness,
     createdDate,
     username,
     trackTemperature,
     trackVersion,
     carVersion,
-    avgPathWetness,
   }: RecordsTrackCarTableRow): { [key: string]: string | number } => {
     return {
       rank,
@@ -450,11 +500,12 @@ export const trackRecordsTrackCar: TableHandler = {
         avgLapTime && avgLapTime > 0
           ? useSecondsToReadableTime(avgLapTime)
           : "-",
-      diff: diff || "-",
+      diff: diff ? diff.toFixed(3) : "-",
       sectorOne: sectorOne > 0 ? useSecondsToReadableTime(sectorOne) : "-",
       sectorTwo: sectorTwo > 0 ? useSecondsToReadableTime(sectorTwo) : "-",
       sectorThree:
         sectorThree > 0 ? useSecondsToReadableTime(sectorThree) : "-",
+
       bestLapTime:
         bestLapTime && bestLapTime > 0
           ? useSecondsToReadableTime(bestLapTime)
@@ -463,13 +514,17 @@ export const trackRecordsTrackCar: TableHandler = {
         bestSectorsLap && bestSectorsLap > 0
           ? useSecondsToReadableTime(bestSectorsLap)
           : "-",
+      avgPathWetness: avgPathWetness
+        ? `${(avgPathWetness * 100).toFixed(1)} %`
+        : "-",
       createdDate: createdDate || "-",
       username: username || "-",
-      trackTemperature:
-        trackTemperature && trackTemperature ? `${trackTemperature} ºC` : "-",
       trackVersion: trackVersion || "-",
       carVersion: carVersion || "-",
-      avgPathWetness: avgPathWetness ? `${avgPathWetness * 100} %` : "-",
+      trackTemperature:
+        trackTemperature && trackTemperature
+          ? `${trackTemperature.toFixed(1)} ºC`
+          : "-",
     };
   },
 };
