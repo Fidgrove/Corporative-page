@@ -5,6 +5,7 @@ import {
   TableHandler,
   RecordsTableRow,
   RecordsTrackTableRow,
+  RecordsTrackCarTableRow,
 } from "~/types";
 import { useSecondsToReadableTime } from "~/composables/timeFormatting";
 
@@ -325,6 +326,149 @@ export const trackRecordsTrack: TableHandler = {
         trackTemperature && trackTemperature ? `${trackTemperature} ºC` : "-",
       trackVersion: trackVersion || "-",
       umbrellaCarId: umbrellaCarId.toString() || "-",
+      avgPathWetness: avgPathWetness ? `${avgPathWetness * 100} %` : "-",
+    };
+  },
+};
+export const trackRecordsTrackCar: TableHandler = {
+  racePaces: false,
+  table: {
+    header: [
+      {
+        name: "Rank",
+        class: "justify-end",
+        sortable: true,
+        property: "rank",
+      },
+      {
+        name: "Lap Time",
+        class: "justify-end",
+        sortable: true,
+        property: "lapTime",
+        get hidden() {
+          return trackRecordsTrackCar.racePaces;
+        },
+      },
+      {
+        name: "Avg Lap Time",
+        class: "justify-end",
+        sortable: true,
+        property: "avgLapTime",
+        get hidden() {
+          return !trackRecordsTrackCar.racePaces;
+        },
+      },
+      {
+        name: "Diff",
+        sortable: true,
+        property: "diff",
+      },
+      {
+        name: "S1",
+        class: "justify-end",
+        sortable: true,
+        property: "sectorOne",
+        get hidden() {
+          return trackRecordsTrackCar.racePaces;
+        },
+      },
+      {
+        name: "S2",
+        class: "justify-end",
+        sortable: true,
+        property: "sectorTwo",
+        get hidden() {
+          return trackRecordsTrackCar.racePaces;
+        },
+      },
+      {
+        name: "S3",
+        class: "justify-end",
+        sortable: true,
+        property: "sectorThree",
+        get hidden() {
+          return trackRecordsTrackCar.racePaces;
+        },
+      },
+      {
+        name: "Best Lap Time",
+        class: "justify-end",
+        sortable: true,
+        property: "bestLapTime",
+        get hidden() {
+          return !trackRecordsTrackCar.racePaces;
+        },
+      },
+      {
+        name: "Best Sectors Lap",
+        class: "justify-end",
+        sortable: true,
+        property: "bestSectorsLap",
+        get hidden() {
+          return !trackRecordsTrackCar.racePaces;
+        },
+      },
+      {
+        name: "Date",
+        class: "justify-start",
+        sortable: true,
+        property: "createdDate",
+      },
+      {
+        name: "Driver",
+        class: "justify-end",
+        sortable: true,
+        property: "username",
+      },
+      { name: "trackTemperature", hidden: true },
+      { name: "trackVersion", hidden: true },
+      { name: "carVersion", hidden: true },
+      { name: "avgPathWetness", hidden: true },
+    ],
+  },
+  mapResult: ({
+    rank,
+    lapTime,
+    avgLapTime,
+    diff,
+    sectorOne,
+    sectorTwo,
+    sectorThree,
+    bestLapTime,
+    bestSectorsLap,
+    createdDate,
+    username,
+    trackTemperature,
+    trackVersion,
+    carVersion,
+    avgPathWetness,
+  }: RecordsTrackCarTableRow): { [key: string]: string | number } => {
+    return {
+      rank,
+      lapTime: lapTime && lapTime > 0 ? useSecondsToReadableTime(lapTime) : "-",
+      avgLapTime:
+        avgLapTime && avgLapTime > 0
+          ? useSecondsToReadableTime(avgLapTime)
+          : "-",
+      diff: diff || "-",
+      sectorOne: sectorOne > 0 ? useSecondsToReadableTime(sectorOne) : "-",
+      sectorTwo: sectorTwo > 0 ? useSecondsToReadableTime(sectorTwo) : "-",
+      sectorThree:
+        sectorThree > 0 ? useSecondsToReadableTime(sectorThree) : "-",
+      bestLapTime:
+        bestLapTime && bestLapTime > 0
+          ? useSecondsToReadableTime(bestLapTime)
+          : "-",
+      bestSectorsLap:
+        bestSectorsLap && bestSectorsLap > 0
+          ? useSecondsToReadableTime(bestSectorsLap)
+          : "-",
+      createdDate: createdDate || "-",
+      username: username || "-",
+      trackTemperature:
+        trackTemperature && trackTemperature ? `${trackTemperature} ºC` : "-",
+      trackVersion: trackVersion || "-",
+      carVersion: carVersion || "-",
       avgPathWetness: avgPathWetness ? `${avgPathWetness * 100} %` : "-",
     };
   },

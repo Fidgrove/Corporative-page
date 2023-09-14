@@ -47,7 +47,7 @@ export interface RecordsTableRow {
   username: string;
   trackTemperature: number;
   avgPathWetness: number;
-  umbrellaTrackId: number;
+  umbrellaTrackId: string;
   avgLapTime: number;
 }
 export interface RecordsTrackTableRow {
@@ -62,9 +62,27 @@ export interface RecordsTrackTableRow {
   trackTemperature: number;
   avgPathWetness: number;
   trackVersion: string;
-  umbrellaCarId: number;
+  umbrellaCarId: string;
   avgLapTime: number;
   bestLapTime: number;
+}
+
+export interface RecordsTrackCarTableRow {
+  rank: number;
+  lapTime: number;
+  avgLapTime: number;
+  bestLapTime: number;
+  bestSectorsLap: number;
+  diff: number;
+  sectorOne: number;
+  sectorTwo: number;
+  sectorThree: number;
+  createdDate: string;
+  username: string;
+  trackTemperature: number;
+  avgPathWetness: number;
+  trackVersion: string;
+  carVersion: string;
 }
 
 export interface RequestParams {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import InfiniteLoading from "v3-infinite-loading";
-import { trackRecords, trackRecordsTrack } from "public/utils";
+import { trackRecordsTrackCar } from "public/utils";
 import {
   RecordsTableRow,
   RequestParams,
@@ -16,6 +16,7 @@ interface RecordsProps {
 }
 const props = defineProps<RecordsProps>();
 
+const carId = useCookie("carId");
 const trackId = useCookie("trackId");
 
 const dataOffset: Ref<number> = ref(0);
@@ -46,15 +47,15 @@ const getTrackRecords = (reset = false) => {
   }
   return useApiRequest(
     props.racePaces
-      ? `support/v1/communities/race-paces/${trackId.value}`
-      : `support/v1/communities/track-records/${trackId.value}`,
+      ? `support/v1/communities/race-paces/${trackId.value}/${carId.value}`
+      : `support/v1/communities/track-records/${trackId.value}/${carId.value}`,
     params.value,
     {
       server: false,
       transform: (data: RequestResponse) => {
         dataMetadata.value = data.metadata;
         dataPage.value = data.results.map((item: RecordsTableRow) =>
-          trackRecordsTrack.mapResult(item),
+          trackRecordsTrackCar.mapResult(item),
         );
       },
     },
@@ -82,13 +83,6 @@ const onSort = async (sortParams: TableSort) => {
   await getTrackRecords(true);
   filteredResult.list = dataPage.value;
 };
-const linkToNextLevel = (val: RecordsTableRow) => {
-  const { trackName } = val;
-  navigateTo({
-    name: "track-records-trackName",
-    params: { trackName },
-  });
-};
 watch(
   () => props.dry,
   async () => {
@@ -100,7 +94,7 @@ watch(
 watch(
   () => props.racePaces,
   async (val) => {
-    trackRecordsTrack.racePaces = val;
+    trackRecordsTrackCar.racePaces = val;
     if (sortable.value.sort === "lapTime" && val) {
       sortable.value.sort = "avgLapTime";
     } else if (sortable.value.sort === "avgLapTime" && !val) {
@@ -127,11 +121,9 @@ watch(
   >
     <RecordsDataTable
       :list="filteredResult.list"
-      :handler="trackRecordsTrack"
+      :handler="trackRecordsTrackCar"
       :sortable="sortable"
-      clickable-row
       @sort="onSort"
-      @row-click="linkToNextLevel"
     />
     <InfiniteLoading class="opacity-0" @infinite="loadMore" />
   </section>
