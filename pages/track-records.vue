@@ -1,77 +1,19 @@
 <script setup lang="ts">
-import { trackRecords } from "public/utils";
-import {
-  RecordsTableRow,
-  RequestParams,
-  RequestResponse,
-  TableSort,
-} from "~/types";
-import { useApiRequest } from "~/composables/apiCall";
-
 const searchQuery: Ref<string> = ref("");
 const racePaces: Ref<boolean> = ref(false);
-const sortable: Ref<TableSort> = ref({ sort: "createdDate", asc: true });
-const params: RequestParams = reactive({
-  offset: 0,
-  limit: 20,
-  sort: "createdDate",
-  direction: "DESC",
-  dry: true,
-  search: "",
-});
-
-const filteredResult: { list: RecordsTableRow[] } = reactive({ list: [] });
-
-const getTrackRecords = () =>
-  useApiRequest<RequestResponse>(
-    racePaces.value
-      ? "support/v1/communities/race-paces"
-      : "support/v1/communities/track-records",
-    params,
-    {
-      transform: (data: RequestResponse) => {
-        searchQuery.value = data.search || "";
-        filteredResult.list = data.results.map((item: RecordsTableRow) =>
-          trackRecords.mapResult(item),
-        );
-      },
-    },
-  );
-
-const { pending } = await getTrackRecords();
-
-const onSort = async (sortParams: TableSort) => {
-  sortable.value = sortParams;
-  params.sort = sortParams.sort;
-  params.direction = sortParams.asc ? "ASC" : "DESC";
-  pending.value = true;
-  const result = await getTrackRecords();
-  pending.value = result.pending.value;
-};
-
-watch([() => params.dry, racePaces], async () => {
-  pending.value = true;
-  const result = await getTrackRecords();
-  pending.value = result.pending.value;
-});
-watch(searchQuery, async (val) => {
-  if (val.length > 2 || !val) {
-    params.search = searchQuery.value;
-    pending.value = true;
-    const result = await getTrackRecords();
-    pending.value = result.pending.value;
-  }
-});
+const dry: Ref<boolean> = ref(true);
 </script>
 
 <template>
   <section
     class="mt-8 mb-6 lg:mb-16 mx-auto overflow-x-scroll sm:overflow-x-auto"
   >
-    <div class="flex justify-between">
+    <div
+      class="flex justify-between mb-6 flex-col md:flex-row space-y-4 md:space-y-0"
+    >
       <input
         v-model="searchQuery"
-        class="w-40 h-10 px-2 rounded-md focus:outline-blue focus:shadow-blue placeholder-dark bg-white placeholder-opacity-50"
+        class="md:w-60 w-full h-10 px-2 rounded-md focus:outline-blue focus:shadow-blue placeholder-dark bg-white placeholder-opacity-50"
         type="search"
         name="search"
         autofocus
@@ -81,8 +23,8 @@ watch(searchQuery, async (val) => {
       <BaseToggler
         label="Dry"
         right-label="Wet"
-        :value="params.dry"
-        @toggle="params.dry = !params.dry"
+        :value="dry"
+        @toggle="dry = !dry"
       />
       <BaseToggler
         label="1 Lap"
@@ -91,19 +33,11 @@ watch(searchQuery, async (val) => {
         @toggle="racePaces = !racePaces"
       />
     </div>
-    <template v-if="pending">
-      <span>Loading...</span>
-    </template>
-    <template v-else-if="filteredResult.list.length">
-      <RecordsDataTable
-        :list="filteredResult.list"
-        :handler="trackRecords"
-        :sortable="sortable"
-        @sort="onSort"
-      />
-    </template>
-    <template v-else>
-      <span>Sth went wrong</span>
-    </template>
+    <NuxtPage
+      ref="child"
+      :search="searchQuery"
+      :dry="dry"
+      :race-paces="racePaces"
+    />
   </section>
 </template>
