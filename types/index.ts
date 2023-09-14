@@ -31,6 +31,7 @@ export interface Table {
 }
 
 export interface TableHandler {
+  racePaces: boolean;
   table: Table;
   mapResult: any;
 }
@@ -48,6 +49,7 @@ export interface RecordsTableRow {
   trackTemperature: number;
   avgPathWetness: number;
   umbrellaTrackId: number;
+  avgLapTime?: number;
 }
 
 export interface RequestParams {

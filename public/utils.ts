@@ -110,6 +110,7 @@ export const membershipPlans: Plan[] = [
 ];
 
 export const trackRecords: TableHandler = {
+  racePaces: false,
   table: {
     isLink: true,
     header: [
@@ -126,8 +127,10 @@ export const trackRecords: TableHandler = {
         property: "carName",
       },
       {
-        name: "Lap Time",
         class: "justify-start",
+        get name() {
+          return trackRecords.racePaces ? "Avg Lap Time" : "Lap Time";
+        },
         property: "lapTime",
       },
       {
@@ -149,6 +152,10 @@ export const trackRecords: TableHandler = {
         name: "avgPathWetness",
         hidden: true,
       },
+      {
+        name: "avgLapTime",
+        hidden: true,
+      },
     ],
   },
   mapResult: ({
@@ -159,14 +166,21 @@ export const trackRecords: TableHandler = {
     trackTemperature,
     avgPathWetness,
     username,
-  }: RecordsTableRow): { [key: string]: string } => ({
-    trackName,
-    carName,
-    lapTime: lapTime && lapTime > 0 ? useSecondsToReadableTime(lapTime) : "-",
-    createdDate,
-    username,
-    trackTemperature:
-      trackTemperature && trackTemperature ? `${trackTemperature} ºC` : "-",
-    avgPathWetness: avgPathWetness ? `${avgPathWetness * 100} %` : "-",
-  }),
+    avgLapTime,
+  }: RecordsTableRow): { [key: string]: string } => {
+    const lapTimeProp = trackRecords.racePaces ? avgLapTime : lapTime;
+    return {
+      trackName,
+      carName,
+      lapTime:
+        lapTimeProp && lapTimeProp > 0
+          ? useSecondsToReadableTime(lapTimeProp)
+          : "-",
+      createdDate,
+      username,
+      trackTemperature:
+        trackTemperature && trackTemperature ? `${trackTemperature} ºC` : "-",
+      avgPathWetness: avgPathWetness ? `${avgPathWetness * 100} %` : "-",
+    };
+  },
 };

@@ -78,10 +78,22 @@ const onSort = async (sortParams: TableSort) => {
   filteredResult.list = dataPage.value;
 };
 
-watch([() => props.dry, () => props.racePaces], async () => {
-  await getTrackRecords(true);
-  filteredResult.list = dataPage.value;
-});
+watch(
+  () => props.dry,
+  async () => {
+    await getTrackRecords(true);
+    filteredResult.list = dataPage.value;
+  },
+);
+
+watch(
+  () => props.racePaces,
+  async (val) => {
+    trackRecords.racePaces = val;
+    await getTrackRecords(true);
+    filteredResult.list = dataPage.value;
+  },
+);
 watch(
   () => props.search,
   async (val) => {
