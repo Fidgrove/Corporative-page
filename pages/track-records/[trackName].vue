@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import InfiniteLoading from "v3-infinite-loading";
-import { trackRecords } from "public/utils";
+import { trackRecords, trackRecordsTrack } from "public/utils";
 import {
   RecordsTableRow,
   RequestParams,
@@ -16,9 +16,14 @@ interface RecordsProps {
 }
 const props = defineProps<RecordsProps>();
 
+const trackId = useCookie("trackId");
+
 const dataOffset: Ref<number> = ref(0);
 const dataItemsLimit: Ref<number> = ref(20);
-const sortable: Ref<TableSort> = ref({ sort: "createdDate", asc: true });
+const sortable: Ref<TableSort> = ref({
+  sort: props.racePaces ? "avgLapTime" : "lapTime",
+  asc: true,
+});
 const dataMetadata: Ref<RequestResponse["metadata"]> = ref(null);
 const params = computed<RequestParams>(() => {
   return {
@@ -41,15 +46,15 @@ const getTrackRecords = (reset = false) => {
   }
   return useApiRequest(
     props.racePaces
-      ? "support/v1/communities/race-paces"
-      : "support/v1/communities/track-records",
+      ? `support/v1/communities/race-paces/${trackId.value}`
+      : `support/v1/communities/track-records/${trackId.value}`,
     params.value,
     {
       server: false,
       transform: (data: RequestResponse) => {
         dataMetadata.value = data.metadata;
         dataPage.value = data.results.map((item: RecordsTableRow) =>
-          trackRecords.mapResult(item),
+          trackRecordsTrack.mapResult(item),
         );
       },
     },
@@ -78,9 +83,7 @@ const onSort = async (sortParams: TableSort) => {
   filteredResult.list = dataPage.value;
 };
 const linkToNextLevel = (val: RecordsTableRow) => {
-  const { trackName, umbrellaTrackId } = val;
-  const trackId = useCookie("trackId");
-  trackId.value = umbrellaTrackId.toString();
+  const { trackName } = val;
   navigateTo({
     name: "track-records-trackName",
     params: { trackName },
@@ -97,7 +100,7 @@ watch(
 watch(
   () => props.racePaces,
   async (val) => {
-    trackRecords.racePaces = val;
+    trackRecordsTrack.racePaces = val;
     if (sortable.value.sort === "lapTime" && val) {
       sortable.value.sort = "avgLapTime";
     } else if (sortable.value.sort === "avgLapTime" && !val) {
@@ -124,7 +127,7 @@ watch(
   >
     <RecordsDataTable
       :list="filteredResult.list"
-      :handler="trackRecords"
+      :handler="trackRecordsTrack"
       :sortable="sortable"
       clickable-row
       @sort="onSort"

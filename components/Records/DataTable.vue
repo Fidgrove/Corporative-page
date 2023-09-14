@@ -5,10 +5,11 @@ interface TableProps {
   list: RecordsTableRow[];
   handler: TableHandler;
   sortable: TableSort;
+  clickableRow: boolean;
 }
 const props = defineProps<TableProps>();
 
-const emit = defineEmits(["sort"]);
+const emit = defineEmits(["sort", "row-click"]);
 const checkSortedParams = (
   property: string | undefined,
   condition: boolean,
@@ -73,6 +74,7 @@ const sortColumn = (sort: string | undefined, asc: boolean) => {
         v-for="(row, idx) in list"
         :key="idx"
         class="cursor-pointer hover:bg-blue hover:text-white"
+        @click="clickableRow ? $emit('row-click', row) : null"
       >
         <td
           v-for="(val, key, i) in row"

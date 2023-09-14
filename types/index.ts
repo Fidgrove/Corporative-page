@@ -26,7 +26,6 @@ interface TableHeader {
 }
 
 export interface Table {
-  isLink?: boolean;
   header: TableHeader[];
 }
 
@@ -49,7 +48,23 @@ export interface RecordsTableRow {
   trackTemperature: number;
   avgPathWetness: number;
   umbrellaTrackId: number;
-  avgLapTime?: number;
+  avgLapTime: number;
+}
+export interface RecordsTrackTableRow {
+  carName: string;
+  className: string;
+  lapTime: number;
+  sectorOne: number;
+  sectorTwo: number;
+  sectorThree: number;
+  createdDate: string;
+  username: string;
+  trackTemperature: number;
+  avgPathWetness: number;
+  trackVersion: string;
+  umbrellaCarId: number;
+  avgLapTime: number;
+  bestLapTime: number;
 }
 
 export interface RequestParams {
