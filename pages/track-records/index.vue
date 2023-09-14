@@ -30,59 +30,64 @@ const params = computed<RequestParams>(() => {
     search: props.search,
   };
 });
-
+const dataPage: Ref<RecordsTableRow[]> = ref([]);
 const filteredResult: { list: RecordsTableRow[] } = reactive({ list: [] });
 
-const getTrackRecords = (reset = true) => {
+const getTrackRecords = (reset = false) => {
   if (reset) {
     const { offset, limit } = useApiRequestReset();
     dataOffset.value = offset;
     dataItemsLimit.value = limit;
   }
-  return useApiRequest<RequestResponse>(
+  return useApiRequest(
     props.racePaces
       ? "support/v1/communities/race-paces"
       : "support/v1/communities/track-records",
     params.value,
     {
+      server: false,
       transform: (data: RequestResponse) => {
         dataMetadata.value = data.metadata;
-        const newFilteredData = data.results.map((item: RecordsTableRow) =>
+        dataPage.value = data.results.map((item: RecordsTableRow) =>
           trackRecords.mapResult(item),
         );
-        if (reset) {
-          dataOffset.value += dataItemsLimit.value;
-          filteredResult.list = newFilteredData;
-        } else {
-          dataOffset.value += dataItemsLimit.value;
-          filteredResult.list = [...filteredResult.list, ...newFilteredData];
-        }
       },
     },
   );
 };
 
-const { pending } = await getTrackRecords();
+const loadMore = async ($state: any) => {
+  dataOffset.value += dataItemsLimit.value;
+  await getTrackRecords();
+  try {
+    if (dataMetadata.value?.count !== 0) {
+      filteredResult.list = [...filteredResult.list, ...dataPage.value];
+      $state.loaded();
+    } else {
+      $state.complete();
+    }
+  } catch (e) {
+    console.log("Error: ", e);
+    $state.complete();
+  }
+};
 
 const onSort = async (sortParams: TableSort) => {
   sortable.value = sortParams;
-  pending.value = true;
-  const result = await getTrackRecords();
-  pending.value = result.pending.value;
+  await getTrackRecords(true);
+  filteredResult.list = dataPage.value;
 };
 
 watch([() => props.dry, () => props.racePaces], async () => {
-  pending.value = true;
-  const result = await getTrackRecords();
-  pending.value = result.pending.value;
+  await getTrackRecords(true);
+  filteredResult.list = dataPage.value;
 });
 watch(
   () => props.search,
   async (val) => {
     if (val.length > 2 || !val) {
-      pending.value = true;
-      const result = await getTrackRecords();
-      pending.value = result.pending.value;
+      await getTrackRecords(true);
+      filteredResult.list = dataPage.value;
     }
   },
 );
@@ -98,6 +103,6 @@ watch(
       :sortable="sortable"
       @sort="onSort"
     />
-    <InfiniteLoading @infinite="getTrackRecords(false)" />
+    <InfiniteLoading class="opacity-0" @infinite="loadMore" />
   </section>
 </template>
