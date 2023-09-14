@@ -35,7 +35,7 @@ const sortColumn = (sort: string | undefined, asc: boolean) => {
           class="font-medium py-1 px-2"
           :class="[header.hidden ? 'hidden' : '']"
         >
-          <span
+          <div
             class="flex items-center"
             :class="[header.class || 'justify-end']"
           >
@@ -64,7 +64,7 @@ const sortColumn = (sort: string | undefined, asc: boolean) => {
                 <span class="w-full h-full"><svg-icon name="arrow" /></span>
               </button>
             </span>
-          </span>
+          </div>
         </th>
       </tr>
     </thead>
@@ -76,15 +76,15 @@ const sortColumn = (sort: string | undefined, asc: boolean) => {
       >
         <td
           v-for="(val, key, i) in row"
-          :key="`support_${val}`"
+          :key="`${val}${i}`"
           class="py-1 px-2 tabular-nums lining-nums"
           :class="[handler.table.header[i].hidden ? 'hidden' : '']"
         >
-          <span
+          <div
             :class="['flex', handler.table.header[i].class || 'justify-end']"
           >
             {{ val }}
-          </span>
+          </div>
         </td>
       </tr>
     </tbody>
