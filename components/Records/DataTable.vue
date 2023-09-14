@@ -5,7 +5,7 @@ interface TableProps {
   list: RecordsTableRow[];
   handler: TableHandler;
   sortable: TableSort;
-  clickableRow: boolean;
+  clickableRow?: boolean;
 }
 const props = defineProps<TableProps>();
 
@@ -73,7 +73,8 @@ const sortColumn = (sort: string | undefined, asc: boolean) => {
       <tr
         v-for="(row, idx) in list"
         :key="idx"
-        class="cursor-pointer hover:bg-blue hover:text-white"
+        class="hover:bg-blue hover:text-white"
+        :class="{ 'cursor-pointer': clickableRow }"
         @click="clickableRow ? $emit('row-click', row) : null"
       >
         <td
