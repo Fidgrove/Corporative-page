@@ -54,6 +54,7 @@ export interface RecordsTableRow {
   trackTemperature: number;
   avgPathWetness: number;
   umbrellaTrackId: string;
+  umbrellaCarId: string;
   avgLapTime: number;
 }
 export interface RecordsTrackTableRow {

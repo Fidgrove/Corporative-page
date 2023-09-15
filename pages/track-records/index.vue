@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import InfiniteLoading from "v3-infinite-loading";
 import { trackRecords } from "public/utils";
 import {
   RecordsTableRow,
@@ -8,6 +7,7 @@ import {
   TableSort,
 } from "~/types";
 import { useApiRequest, useApiRequestReset } from "~/composables/apiCall";
+import DataTable from "~/components/Records/DataTable.vue";
 
 interface RecordsProps {
   search: string;
@@ -19,7 +19,7 @@ const props = defineProps<RecordsProps>();
 const dataOffset: Ref<number> = ref(0);
 const dataItemsLimit: Ref<number> = ref(20);
 const sortable: Ref<TableSort> = ref({ sort: "createdDate", asc: true });
-const dataMetadata: Ref<RequestResponse["metadata"]> = ref(null);
+const table: Ref<typeof DataTable> = ref(DataTable);
 const params = computed<RequestParams>(() => {
   return {
     offset: dataOffset.value,
@@ -30,10 +30,8 @@ const params = computed<RequestParams>(() => {
     search: props.search,
   };
 });
-const dataPage: Ref<RecordsTableRow[]> = ref([]);
-const filteredResult: { list: RecordsTableRow[] } = reactive({ list: [] });
 
-const getTrackRecords = (reset = false) => {
+const getTrackRecords = (reset = false): any => {
   if (reset) {
     const { offset, limit } = useApiRequestReset();
     dataOffset.value = offset;
@@ -44,39 +42,12 @@ const getTrackRecords = (reset = false) => {
       ? "support/v1/communities/race-paces"
       : "support/v1/communities/track-records",
     params.value,
-    {
-      server: false,
-      transform: (data: RequestResponse) => {
-        dataMetadata.value = data.metadata;
-        dataPage.value = data.results.map((item: RecordsTableRow) =>
-          trackRecords.mapResult(item),
-        );
-      },
-    },
   );
 };
 
-const loadMore = async ($state: any) => {
+const { data, pending }: { data: Ref<RequestResponse>; pending: boolean } =
   await getTrackRecords();
-  try {
-    if (dataMetadata.value?.count !== 0) {
-      filteredResult.list = [...filteredResult.list, ...dataPage.value];
-      $state.loaded();
-    } else {
-      $state.complete();
-    }
-  } catch (e) {
-    console.log("Error: ", e);
-    $state.complete();
-  }
-  dataOffset.value += dataItemsLimit.value;
-};
 
-const onSort = async (sortParams: TableSort) => {
-  sortable.value = sortParams;
-  await getTrackRecords(true);
-  filteredResult.list = dataPage.value;
-};
 const linkToNextLevel = (val: RecordsTableRow) => {
   const { trackName, umbrellaTrackId } = val;
   const trackId = useCookie("trackId");
@@ -86,12 +57,44 @@ const linkToNextLevel = (val: RecordsTableRow) => {
     params: { trackName },
   });
 };
+
+const loadMore = async ($state: any) => {
+  dataOffset.value += dataItemsLimit.value;
+  const { data: dataPage }: { data: Ref<RequestResponse> } =
+    await getTrackRecords();
+  try {
+    if (dataPage.value.metadata?.count !== 0 && dataPage.value.results.length) {
+      data.value.results = [...data.value.results, ...dataPage.value.results];
+      $state.loaded();
+    } else {
+      $state.complete();
+    }
+  } catch (e) {
+    console.log("Error: ", e);
+    $state.complete();
+  }
+};
+
+const onSort = async (sortParams: TableSort) => {
+  sortable.value = sortParams;
+  const { data: dataPage }: { data: Ref<RequestResponse> } =
+    await getTrackRecords(true);
+  if (table.value) {
+    table.value.infiniteId++;
+  }
+  data.value.results = dataPage.value.results;
+};
+
 watch(
   () => props.dry,
   async (val) => {
     trackRecords.wetSession = !val;
-    await getTrackRecords(true);
-    filteredResult.list = dataPage.value;
+    const { data: dataPage }: { data: Ref<RequestResponse> } =
+      await getTrackRecords(true);
+    if (table.value) {
+      table.value.infiniteId++;
+    }
+    data.value.results = dataPage.value.results;
   },
 );
 
@@ -104,16 +107,26 @@ watch(
     } else if (sortable.value.sort === "avgLapTime" && !val) {
       sortable.value.sort = "lapTime";
     }
-    await getTrackRecords(true);
-    filteredResult.list = dataPage.value;
+
+    const { data: dataPage }: { data: Ref<RequestResponse> } =
+      await getTrackRecords(true);
+    if (table.value) {
+      table.value.infiniteId++;
+    }
+    data.value.results = dataPage.value.results;
   },
 );
+
 watch(
   () => props.search,
   async (val) => {
     if (val.length > 2 || !val) {
-      await getTrackRecords(true);
-      filteredResult.list = dataPage.value;
+      const { data: dataPage }: { data: Ref<RequestResponse> } =
+        await getTrackRecords(true);
+      if (table.value) {
+        table.value.infiniteId++;
+      }
+      data.value.results = dataPage.value.results;
     }
   },
 );
@@ -123,14 +136,18 @@ watch(
   <section
     class="mt-8 mb-6 lg:mb-16 mx-auto overflow-x-scroll sm:overflow-x-auto"
   >
-    <RecordsDataTable
-      :list="filteredResult.list"
-      :handler="trackRecords"
-      :sortable="sortable"
-      clickable-row
-      @sort="onSort"
-      @row-click="linkToNextLevel"
-    />
-    <InfiniteLoading class="opacity-0" @infinite="loadMore" />
+    <template v-if="data.results.length">
+      <RecordsDataTable
+        ref="table"
+        :list="data.results"
+        :handler="trackRecords"
+        :sortable="sortable"
+        clickable-row
+        @infinite-loading="loadMore"
+        @sort="onSort"
+        @row-click="linkToNextLevel"
+      />
+    </template>
+    <template v-else>No Data</template>
   </section>
 </template>

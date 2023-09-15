@@ -3,7 +3,7 @@ import { RequestParams } from "~/types";
 export const useApiRequest = <T>(
   url: string,
   params: RequestParams,
-  options: any = [],
+  options: any = {},
 ) => {
   const config = useRuntimeConfig();
   return useFetch<T>(url, {
