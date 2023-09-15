@@ -6,6 +6,7 @@ import {
   RecordsTableRow,
   RecordsTrackTableRow,
   RecordsTrackCarTableRow,
+  FaqItem,
 } from "~/types";
 import { useSecondsToReadableTime } from "~/composables/timeFormatting";
 
@@ -111,6 +112,97 @@ export const membershipPlans: Plan[] = [
   },
 ];
 
+export const faq: FaqItem[] = [
+  {
+    question: "What is Fidgrove about?",
+    answer: `<p class="pb-4">Fidgrove aims to improve sim racing performance through data. To that end, it uses the latest technology to deliver a cloud-based user-friendly data platform. </p>
+    <p class="pb-4">Fidgrove has 3 main components:</p>`,
+    list: {
+      type: "mark",
+      items: [
+        " DataLogger app: Easily log your data ",
+        "Engineering Station: navigate and analyze your private data, compare lap times with others, share with teammates",
+        "Trackside Station: track live data & analyze team’s live data streams",
+      ],
+    },
+  },
+  {
+    question: "What data sources are supported?",
+    answer: `<p class="pb-4">Fidgrove currently supports rFactor 2. Other data sources to be supported in the future. </p>`,
+  },
+  {
+    question: "How does Fidgrove get the telemetry? ",
+    answer: `<p class="pb-4">Fidgrove has a DataLogger Windows app that has to be installed in the sim PC. This application manages to get the data from the sim, and streams it to our private servers.  </p>`,
+  },
+  {
+    question: "Is Fidgrove’s DataLogger resource intensive?",
+    answer: `<p class="pb-4">No, it is not. Fidgrove minimizes all local computing precisely so there’s no impact on the sim’s PC (e.g., no file writing/reading to store telemetry). It essentially packages and steers information to compressed data streams. </p>`,
+  },
+  {
+    question: "Where can I see my data analyses? ",
+    answer: `<p class="pb-4">You can easily access your data through Fidgrove’s Engineering Station, which is accessible through any browser on <a href="https://station.fidgrove.com/" target="_blank" class="text-blue">Fidgrove </a>.  </p>`,
+  },
+  {
+    question: "Does Fidgrove support viewing of live telemetry? ",
+    answer: `<p class="pb-4">Yes, Fidgrove Trackside Station shows cockpit data info, performance metrics (times, speeds), leaderboards and race analysis info, and real-time telemetry. It’s accessible on any browser, by you and your teammates.</p>`,
+  },
+  {
+    question: "What are Fidgrove’s main features? ",
+    answer: ` <p class="pb-4">List of features is big, but here are examples: </p>`,
+    list: {
+      type: "mark",
+      items: [
+        "Leverage rich metadata for quick and easy logged data searches",
+        "Check detailed info on sessions, stints, laps, personal track records, etc",
+        "Analyze auto-generated run charts & correlation charts to understand trends",
+        "Get customized insights on electric cars(e.g., power mode, regen mode, frontier performance plot)",
+        "Join/create a community to have friendly hot lap competitions(e.g., dry/wet, 1 lap/race pace)",
+        "Join/create a team to share data and manage events ",
+        "Prepare for event, leveraging on a specific workflow tool enabling easy analysis (incl. innovative data highlights with data slicing) ",
+        "Plan your race strategy by leveraging your data and getting AI-powered suggestions ",
+        "Use Fidgrove’s Trackside Station to see live data / performance metrics from you or your team",
+      ],
+    },
+    addText: ` <p class="pb-4">Please see features section for further details on specific features. </p>`,
+  },
+  {
+    question: "In which way is Fidgrove innovating?",
+    answer: `<p class="pb-4">We believe the path should be to have real-time computing on all data available, delivering insights on how to improve performance immediately. That’s not the easy path, but it should be the right path to the solution that drivers and teams need. </p>
+<p class="pb-4">As such, we have implemented the latest data stack technology that enables real-time computing with very low latency, making Fidgrove’s Trackside Station a great platform for future features. Furthermore, we are also creating our own path through research  in the field. XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>`,
+  },
+  {
+    question: "How much do I have to pay to use Fidgrove? ",
+    answer: `<p class="pb-4">You can use most of Fidgrove’s features for free, including no cap on logging and analyzing data. Please see information on premium membership to see additional features that are paid. </p>`,
+  },
+  {
+    question: "What do I have to do to start using it? ",
+    answer: `<p class="pb-4">You’re only 3 steps away from using Fidgrove:</p>`,
+    list: {
+      type: "letter",
+      items: [
+        `Register at Fidgrove’s webpage <a href="https://station.fidgrove.com/" target="_blank" class="text-blue">Fidgrove </a>`,
+        "Login and download Fidgrove’s DataLogger  ",
+        "Install Fidgrove’s DataLogger",
+      ],
+    },
+  },
+  {
+    question: "What are the core principles Fidgrove adheres to? ",
+    answer: `<p class="pb-4">Here are our core principles: </p>`,
+    list: {
+      type: "letter",
+      items: [
+        "do the heavy lifting: minimize use of local resources, maximize workflow efficiency",
+        "be there for the user: ensure reliability, secure privacy",
+        "make experience pleasant: make it easy, make it beautiful, amaze with support ",
+      ],
+    },
+  },
+  {
+    question: "What’s the best way to keep updated? ",
+    answer: `<p class="pb-4">The DataLogger app and Engineering Station are automatically updated. If you’d like to follow up Fidgrove’s news and updates, join our <a href="https://discord.gg/PcuaKYMs8Y" rel="noopener noreferrer" target="_blank" class="text-blue">Discord </a> server or follow us on <a href="https://x.com/fidgrove" rel="noopener noreferrer" target="_blank" class="text-blue">Twitter </a></p>`,
+  },
+];
 export const trackRecords: TableHandler = {
   wetSession: false,
   racePaces: false,

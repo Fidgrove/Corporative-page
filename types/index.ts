@@ -17,6 +17,16 @@ export interface Plan {
   cta: { text: string; link: string };
 }
 
+export interface FaqItem {
+  question: string;
+  answer: string;
+  list?: {
+    type: string;
+    items: string[];
+  };
+  addText?: string;
+}
+
 interface TableHeader {
   name: string;
   property?: string;
