@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import InfiniteLoading from "v3-infinite-loading";
 import { TableHandler, RecordsTableRow, TableSort } from "~/types";
+import { useScrollHandler } from "~/composables/eventsHandler";
 
 interface TableProps {
   list: RecordsTableRow[];
@@ -11,6 +12,7 @@ interface TableProps {
 const props = defineProps<TableProps>();
 
 const infiniteId: Ref<number> = ref(+new Date());
+const table: Ref<HTMLTableElement | null> = ref(null);
 
 const emit = defineEmits(["sort", "row-click", "infinite-loading"]);
 const checkSortedParams = (
@@ -29,21 +31,26 @@ const formattedList = computed<RecordsTableRow[]>(() =>
 );
 
 defineExpose({ infiniteId });
+
+const { isHeaderOnTop } = useScrollHandler(table);
 </script>
 
 <template>
-  <section>
+  <section class="overflow-x-scroll md:overflow-x-visible">
     <table
       ref="table"
       class="mx-auto w-full divide-y divide-darkBlue text-darkBlue"
     >
-      <thead class="sticky-header">
+      <thead>
         <tr class="border-solid border-b border-neutral-300">
           <th
             v-for="header in handler.table.header"
             :key="header.property"
             class="font-medium py-1 px-2"
-            :class="[header.hidden ? 'hidden' : '']"
+            :class="[
+              header.hidden && 'hidden',
+              isHeaderOnTop && 'sticky top-0 bg-bckg',
+            ]"
           >
             <div
               class="flex items-center"

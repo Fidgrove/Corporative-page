@@ -5,9 +5,7 @@ const dry: Ref<boolean> = ref(true);
 </script>
 
 <template>
-  <section
-    class="mt-8 mb-6 lg:mb-16 mx-auto overflow-x-scroll sm:overflow-x-auto"
-  >
+  <section class="mt-8 mb-6 lg:mb-16 mx-auto">
     <div
       class="flex justify-between mb-6 flex-col md:flex-row space-y-4 md:space-y-0"
     >

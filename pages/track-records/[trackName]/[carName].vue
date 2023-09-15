@@ -121,9 +121,7 @@ watch(
 </script>
 
 <template>
-  <section
-    class="mt-8 mb-6 lg:mb-16 mx-auto overflow-x-scroll sm:overflow-x-auto"
-  >
+  <section class="mt-8 mb-6 lg:mb-16 mx-auto">
     <template v-if="data.results.length">
       <RecordsDataTable
         ref="table"
