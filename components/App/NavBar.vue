@@ -6,7 +6,7 @@ const toggleNav = () => (showMenu.value = !showMenu.value);
 </script>
 
 <template>
-  <div class="flex flex-col pt-2 pb-4 px-4 fixed md:static w-full bg-bckg">
+  <div class="flex flex-col pt-2 pb-4 px-4 fixed md:static w-full bg-bckg z-10">
     <div class="flex justify-center items-center">
       <div>
         <NuxtLink to="/" @click="showMenu = false">
@@ -40,7 +40,7 @@ const toggleNav = () => (showMenu.value = !showMenu.value);
         v-for="item in navigation"
         :key="item.name"
         :to="item.link"
-        class="text-black rounded-md px-6 pt-7 pb-3 md:pb-1 md:py-2 font-normal navbar-item"
+        class="text-black rounded-md px-2 pt-7 pb-3 md:pb-1 md:py-2 md:px-6 font-normal navbar-item"
         @click="showMenu = false"
         >{{ item.name }}
       </NuxtLink>
