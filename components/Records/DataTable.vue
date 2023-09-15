@@ -115,8 +115,26 @@ const { isHeaderOnTop } = useScrollHandler(table);
             :class="[handler.table.header[i].hidden ? 'hidden' : '']"
           >
             <div
-              :class="['flex', handler.table.header[i].class || 'justify-end']"
+              :class="[
+                'flex items-center',
+                handler.table.header[i].class || 'justify-end',
+              ]"
             >
+              <template v-if="handler.table.header[i].prependIcon">
+                <span
+                  :class="{
+                    'pl-8': !handler.table.header[i].prependIcon(row),
+                  }"
+                >
+                  <template v-if="handler.table.header[i].prependIcon(row)">
+                    <img
+                      :alt="val.toString()"
+                      :src="`/img/${handler.table.header[i].prependIcon(row)}`"
+                      class="w-6 object-contain mr-2"
+                    />
+                  </template>
+                </span>
+              </template>
               {{ val }}
             </div>
           </td>

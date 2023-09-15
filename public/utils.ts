@@ -131,12 +131,14 @@ export const trackRecords: TableHandler = {
         class: "justify-start",
         sortable: true,
         property: "trackName",
+        prependIcon: ({ isOfficialTrack }) => isOfficialTrack,
       },
       {
         name: "Car",
         class: "justify-start",
         sortable: true,
         property: "carName",
+        prependIcon: ({ isOfficialCar }) => isOfficialCar,
       },
       {
         name: "Lap Time",
@@ -181,6 +183,8 @@ export const trackRecords: TableHandler = {
         name: "avgLapTime",
         hidden: true,
       },
+      { name: "isOfficialCar", hidden: true },
+      { name: "isOfficialTrack", hidden: true },
     ],
   },
   mapResult: ({
@@ -193,6 +197,8 @@ export const trackRecords: TableHandler = {
     umbrellaTrackId,
     trackTemperature,
     avgPathWetness,
+    isOfficialCar,
+    isOfficialTrack,
   }: RecordsTableRow): { [key: string]: string } => {
     return {
       trackName: trackName || "-",
@@ -212,6 +218,8 @@ export const trackRecords: TableHandler = {
       avgPathWetness: avgPathWetness
         ? `${(avgPathWetness * 100).toFixed(1)} %`
         : "-",
+      isOfficialCar: isOfficialCar ? "rF2.png" : "",
+      isOfficialTrack: isOfficialTrack ? "rF2.png" : "",
     };
   },
 };
@@ -236,6 +244,7 @@ export const trackRecordsTrack: TableHandler = {
         class: "justify-start",
         sortable: true,
         property: "carName",
+        prependIcon: ({ isOfficialCar }) => isOfficialCar,
       },
       {
         name: "Class",
@@ -313,6 +322,7 @@ export const trackRecordsTrack: TableHandler = {
       { name: "trackVersion", hidden: true },
       { name: "umbrellaCarId", hidden: true },
       { name: "avgPathWetness", hidden: true },
+      { name: "isOfficialCar", hidden: true },
     ],
   },
   mapResult: ({
@@ -330,6 +340,7 @@ export const trackRecordsTrack: TableHandler = {
     trackVersion,
     umbrellaCarId,
     avgPathWetness,
+    isOfficialCar,
   }: RecordsTrackTableRow): { [key: string]: string } => {
     return {
       carName: carName || "-",
@@ -358,6 +369,7 @@ export const trackRecordsTrack: TableHandler = {
       avgPathWetness: avgPathWetness
         ? `${(avgPathWetness * 100).toFixed(1)} %`
         : "-",
+      isOfficialCar: isOfficialCar ? "rF2.png" : "",
     };
   },
 };

@@ -23,6 +23,7 @@ interface TableHeader {
   class?: string;
   hidden?: boolean;
   sortable?: boolean;
+  prependIcon?: (val: any) => string;
 }
 
 export interface Table {
@@ -56,6 +57,8 @@ export interface RecordsTableRow {
   umbrellaTrackId: string;
   umbrellaCarId: string;
   avgLapTime: number;
+  isOfficialCar: boolean;
+  isOfficialTrack: boolean;
 }
 export interface RecordsTrackTableRow {
   carName: string;
@@ -72,6 +75,7 @@ export interface RecordsTrackTableRow {
   umbrellaCarId: string;
   avgLapTime: number;
   bestLapTime: number;
+  isOfficialCar: boolean;
 }
 
 export interface RecordsTrackCarTableRow {
