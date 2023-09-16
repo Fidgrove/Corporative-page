@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { trackRecordsTrackCar } from "public/utils";
+import { trackRecords, trackRecordsTrackCar } from "public/utils";
 import { RequestParams, RequestResponse, TableSort } from "~/types";
 import { useApiRequest, useApiRequestReset } from "~/composables/apiCall";
 import DataTable from "~/components/Records/DataTable.vue";
@@ -20,7 +20,9 @@ const sortable: Ref<TableSort> = ref({
   sort: props.racePaces ? "avgLapTime" : "lapTime",
   asc: true,
 });
+const loading: Ref<boolean> = ref(false);
 const table: Ref<typeof DataTable> = ref(DataTable);
+
 const params = computed<RequestParams>(() => {
   return {
     offset: dataOffset.value,
@@ -46,8 +48,7 @@ const getTrackRecords = (reset = false): any => {
   );
 };
 
-const { data, pending }: { data: Ref<RequestResponse>; pending: boolean } =
-  await getTrackRecords();
+const { data }: { data: Ref<RequestResponse> } = await getTrackRecords();
 
 const loadMore = async ($state: any) => {
   dataOffset.value += dataItemsLimit.value;
@@ -67,54 +68,74 @@ const loadMore = async ($state: any) => {
 };
 
 const onSort = async (sortParams: TableSort) => {
+  loading.value = true;
   sortable.value = sortParams;
-  const { data: dataPage }: { data: Ref<RequestResponse> } =
+  const {
+    data: dataPage,
+    pending,
+  }: { data: Ref<RequestResponse>; pending: Ref<boolean> } =
     await getTrackRecords(true);
   if (table.value) {
     table.value.infiniteId++;
   }
   data.value.results = dataPage.value.results;
+  loading.value = pending.value;
 };
 
 watch(
   () => props.dry,
   async (val) => {
+    loading.value = true;
     trackRecordsTrackCar.wetSession = !val;
-    const { data: dataPage }: { data: Ref<RequestResponse> } =
+    const {
+      data: dataPage,
+      pending,
+    }: { data: Ref<RequestResponse>; pending: Ref<boolean> } =
       await getTrackRecords(true);
     if (table.value) {
       table.value.infiniteId++;
     }
     data.value.results = dataPage.value.results;
+    loading.value = pending.value;
   },
 );
 watch(
   () => props.racePaces,
   async (val) => {
+    loading.value = true;
     trackRecordsTrackCar.racePaces = val;
     if (sortable.value.sort === "lapTime" && val) {
       sortable.value.sort = "avgLapTime";
     } else if (sortable.value.sort === "avgLapTime" && !val) {
       sortable.value.sort = "lapTime";
     }
-    const { data: dataPage }: { data: Ref<RequestResponse> } =
+    const {
+      data: dataPage,
+      pending,
+    }: { data: Ref<RequestResponse>; pending: Ref<boolean> } =
       await getTrackRecords(true);
     if (table.value) {
       table.value.infiniteId++;
     }
     data.value.results = dataPage.value.results;
+    loading.value = pending.value;
   },
 );
 watch(
   () => props.search,
   async (val) => {
     if (val.length > 2 || !val) {
-      const { data: dataPage }: { data: Ref<RequestResponse> } =
+      loading.value = true;
+      const {
+        data: dataPage,
+        pending,
+      }: { data: Ref<RequestResponse>; pending: Ref<boolean> } =
         await getTrackRecords(true);
       if (table.value) {
         table.value.infiniteId++;
       }
       data.value.results = dataPage.value.results;
+      loading.value = pending.value;
     }
   },
 );
@@ -122,7 +143,13 @@ watch(
 
 <template>
   <section class="mt-8 mb-6 lg:mb-16 mx-auto">
-    <template v-if="data.results.length">
+    <template v-if="loading">
+      <AppLoadingPlaceholder
+        type="table"
+        :columns="trackRecordsTrackCar.table.header"
+      />
+    </template>
+    <template v-else-if="!loading && data.results.length">
       <RecordsDataTable
         ref="table"
         :handler="trackRecordsTrackCar"
