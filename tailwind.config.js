@@ -22,6 +22,15 @@ module.exports = {
         red: "#f70f1c",
         blue: "#42c3fa",
       },
+      animation: {
+        loading: "shine 1.6s linear infinite",
+      },
+      keyframes: {
+        shine: {
+          "0%": { "background-position": "-100px" },
+          "40%, 100%": { "background-position": "140px" },
+        },
+      },
     },
   },
   plugins: [],
