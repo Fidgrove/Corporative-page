@@ -27,18 +27,20 @@ watch(
         autocomplete="off"
         placeholder="Search"
       />
-      <BaseToggler
-        label="Dry"
-        right-label="Wet"
-        :value="dry"
-        @toggle="dry = !dry"
-      />
-      <BaseToggler
-        label="1 Lap"
-        right-label="10 Laps"
-        :value="!racePaces"
-        @toggle="racePaces = !racePaces"
-      />
+      <div class="flex space-x-10">
+        <BaseToggler
+          label="Dry"
+          right-label="Wet"
+          :value="dry"
+          @toggle="dry = !dry"
+        />
+        <BaseToggler
+          label="1 Lap"
+          right-label="10 Laps"
+          :value="!racePaces"
+          @toggle="racePaces = !racePaces"
+        />
+      </div>
     </div>
     <NuxtPage :search="searchQuery" :dry="dry" :race-paces="racePaces" />
   </section>
