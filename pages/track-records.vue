@@ -2,6 +2,15 @@
 const searchQuery: Ref<string> = ref("");
 const racePaces: Ref<boolean> = ref(false);
 const dry: Ref<boolean> = ref(true);
+
+const route = useRoute();
+watch(
+  () => route.path,
+  () => {
+    searchQuery.value = "";
+  },
+  { immediate: true, deep: true },
+);
 </script>
 
 <template>
@@ -31,11 +40,6 @@ const dry: Ref<boolean> = ref(true);
         @toggle="racePaces = !racePaces"
       />
     </div>
-    <NuxtPage
-      ref="child"
-      :search="searchQuery"
-      :dry="dry"
-      :race-paces="racePaces"
-    />
+    <NuxtPage :search="searchQuery" :dry="dry" :race-paces="racePaces" />
   </section>
 </template>
