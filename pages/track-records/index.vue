@@ -157,24 +157,16 @@ watch(
 
 <template>
   <section class="mt-8 mb-6 lg:mb-16 mx-auto">
-    <template v-if="loading">
-      <AppLoadingPlaceholder
-        type="table"
-        :columns="trackRecords.table.header"
-      />
-    </template>
-    <template v-else-if="!loading && data.results.length">
-      <RecordsDataTable
-        ref="table"
-        :list="data.results"
-        :handler="trackRecords"
-        :sortable="sortable"
-        clickable-row
-        @infinite-loading="loadMore"
-        @sort="onSort"
-        @row-click="linkToNextLevel"
-      />
-    </template>
-    <template v-else>No Data</template>
+    <RecordsDataTable
+      ref="table"
+      :list="data.results"
+      :handler="trackRecords"
+      :sortable="sortable"
+      :loading="loading"
+      clickable-row
+      @infinite-loading="loadMore"
+      @sort="onSort"
+      @row-click="linkToNextLevel"
+    />
   </section>
 </template>

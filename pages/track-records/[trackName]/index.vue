@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { trackRecords, trackRecordsTrack } from "public/utils";
+import { trackRecordsTrack } from "public/utils";
 import {
   RecordsTableRow,
   RequestParams,
@@ -161,24 +161,16 @@ watch(
 
 <template>
   <section class="mt-8 mb-6 lg:mb-16 mx-auto">
-    <template v-if="loading">
-      <AppLoadingPlaceholder
-        type="table"
-        :columns="trackRecordsTrack.table.header"
-      />
-    </template>
-    <template v-else-if="!loading && data.results.length">
-      <RecordsDataTable
-        ref="table"
-        :handler="trackRecordsTrack"
-        :sortable="sortable"
-        clickable-row
-        :list="data.results"
-        @sort="onSort"
-        @row-click="linkToNextLevel"
-        @infinite-loading="loadMore"
-      />
-    </template>
-    <template v-else>No Data</template>
+    <RecordsDataTable
+      ref="table"
+      :list="data.results"
+      :handler="trackRecordsTrack"
+      :sortable="sortable"
+      :loading="loading"
+      clickable-row
+      @infinite-loading="loadMore"
+      @sort="onSort"
+      @row-click="linkToNextLevel"
+    />
   </section>
 </template>

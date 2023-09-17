@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { trackRecords, trackRecordsTrackCar } from "public/utils";
+import { trackRecordsTrackCar } from "public/utils";
 import { RequestParams, RequestResponse, TableSort } from "~/types";
 import { useApiRequest, useApiRequestReset } from "~/composables/apiCall";
 import DataTable from "~/components/Records/DataTable.vue";
@@ -145,22 +145,14 @@ watch(
 
 <template>
   <section class="mt-8 mb-6 lg:mb-16 mx-auto">
-    <template v-if="loading">
-      <AppLoadingPlaceholder
-        type="table"
-        :columns="trackRecordsTrackCar.table.header"
-      />
-    </template>
-    <template v-else-if="!loading && data.results.length">
-      <RecordsDataTable
-        ref="table"
-        :handler="trackRecordsTrackCar"
-        :sortable="sortable"
-        :list="data.results"
-        @sort="onSort"
-        @infinite-loading="loadMore"
-      />
-    </template>
-    <template v-else>No Data</template>
+    <RecordsDataTable
+      ref="table"
+      :list="data.results"
+      :handler="trackRecordsTrackCar"
+      :sortable="sortable"
+      :loading="loading"
+      @infinite-loading="loadMore"
+      @sort="onSort"
+    />
   </section>
 </template>
