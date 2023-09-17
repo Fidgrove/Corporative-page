@@ -122,6 +122,7 @@ const { isHeaderOnTop } = useScrollHandler(table);
             >
               <template v-if="handler.table.header[i].prependIcon">
                 <span
+                  class="shrink-0"
                   :class="{
                     'pl-8': !handler.table.header[i].prependIcon(row),
                   }"
