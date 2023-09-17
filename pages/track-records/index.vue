@@ -48,6 +48,8 @@ const getTrackRecords = (reset = false): any => {
 };
 
 const { data }: { data: Ref<RequestResponse> } = await getTrackRecords();
+trackRecords.wetSession = !props.dry;
+trackRecords.racePaces = props.racePaces;
 
 const linkToNextLevel = (val: RecordsTableRow) => {
   const { trackName, umbrellaTrackId } = val;

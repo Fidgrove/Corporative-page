@@ -53,6 +53,8 @@ const getTrackRecords = (reset = false): any => {
 };
 
 const { data }: { data: Ref<RequestResponse> } = await getTrackRecords();
+trackRecordsTrack.wetSession = !props.dry;
+trackRecordsTrack.racePaces = props.racePaces;
 
 const loadMore = async ($state: any) => {
   dataOffset.value += dataItemsLimit.value;
