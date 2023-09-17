@@ -110,7 +110,7 @@ const { isHeaderOnTop } = useScrollHandler(table);
         >
           <td
             v-for="(val, key, i) in row"
-            :key="`${val}${i}`"
+            :key="`${val}${key}${i}`"
             class="py-1 px-2 tabular-nums lining-nums"
             :class="[handler.table.header[i].hidden ? 'hidden' : '']"
           >
