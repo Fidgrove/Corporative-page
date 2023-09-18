@@ -50,20 +50,20 @@ const { isHeaderOnTop } = useScrollHandler(table);
         ref="table"
         class="mx-auto w-full divide-y divide-darkBlue text-darkBlue"
       >
-        <thead>
-          <tr class="border-solid border-b border-neutral-300">
+        <thead
+          class="relative after:absolute after:w-full after:h-px after:bg-neutral-300"
+          :class="[isHeaderOnTop && 'sticky top-0 bg-bckg']"
+        >
+          <tr>
             <th
               v-for="header in handler.table.header"
               :key="header.property"
               class="font-medium py-1 px-2"
-              :class="[
-                header.hidden && 'hidden',
-                isHeaderOnTop && 'sticky top-0 bg-bckg',
-              ]"
+              :class="[header.hidden && 'hidden']"
             >
               <div
                 class="flex items-center"
-                :class="[header.class || 'justify-end']"
+                :class="[header.class || 'justify-end text-right']"
               >
                 <abbr class="no-underline" :title="header.name">
                   {{ header.name }}
@@ -126,7 +126,7 @@ const { isHeaderOnTop } = useScrollHandler(table);
               <div
                 :class="[
                   'flex items-center',
-                  handler.table.header[i].class || 'justify-end',
+                  handler.table.header[i].class || 'justify-end text-right',
                 ]"
               >
                 <template v-if="handler.table.header[i].prependIcon">

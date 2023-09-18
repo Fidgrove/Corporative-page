@@ -220,21 +220,21 @@ export const trackRecords: TableHandler = {
     header: [
       {
         name: "Track",
-        class: "justify-start",
+        class: "justify-start text-left",
         sortable: true,
         property: "trackName",
         prependIcon: ({ isOfficialTrack }) => isOfficialTrack,
       },
       {
         name: "Car",
-        class: "justify-start",
+        class: "justify-start text-left",
         sortable: true,
         property: "carName",
         prependIcon: ({ isOfficialCar }) => isOfficialCar,
       },
       {
         name: "Lap Time",
-        class: "justify-start",
+        class: "justify-start text-left",
         sortable: true,
         property: "lapTime",
         get hidden() {
@@ -243,7 +243,7 @@ export const trackRecords: TableHandler = {
       },
       {
         name: "Avg Lap Time",
-        class: "justify-start",
+        class: "justify-start text-left",
         sortable: true,
         property: "avgLapTime",
         get hidden() {
@@ -252,13 +252,13 @@ export const trackRecords: TableHandler = {
       },
       {
         name: "Date",
-        class: "justify-end",
+        class: "justify-end text-right w-32",
         sortable: true,
         property: "createdDate",
       },
       {
         name: "Driver",
-        class: "justify-start",
+        class: "justify-start text-left",
         sortable: true,
         property: "username",
       },
@@ -333,20 +333,20 @@ export const trackRecordsTrack: TableHandler = {
     header: [
       {
         name: "Car",
-        class: "justify-start",
+        class: "justify-start text-left",
         sortable: true,
         property: "carName",
         prependIcon: ({ isOfficialCar }) => isOfficialCar,
       },
       {
         name: "Class",
-        class: "justify-start",
+        class: "justify-start text-left",
         sortable: true,
         property: "className",
       },
       {
         name: "Lap Time",
-        class: "justify-end",
+        class: "justify-end text-right",
         sortable: true,
         property: "lapTime",
         get hidden() {
@@ -355,7 +355,7 @@ export const trackRecordsTrack: TableHandler = {
       },
       {
         name: "Avg Lap Time",
-        class: "justify-end",
+        class: "justify-end text-right",
         sortable: true,
         property: "avgLapTime",
         get hidden() {
@@ -364,7 +364,7 @@ export const trackRecordsTrack: TableHandler = {
       },
       {
         name: "S1",
-        class: "justify-end",
+        class: "justify-end text-right",
         sortable: true,
         property: "sectorOne",
         get hidden() {
@@ -373,7 +373,7 @@ export const trackRecordsTrack: TableHandler = {
       },
       {
         name: "S2",
-        class: "justify-end",
+        class: "justify-end text-right",
         sortable: true,
         property: "sectorTwo",
         get hidden() {
@@ -382,7 +382,7 @@ export const trackRecordsTrack: TableHandler = {
       },
       {
         name: "S3",
-        class: "justify-end",
+        class: "justify-end text-right",
         sortable: true,
         property: "sectorThree",
         get hidden() {
@@ -391,7 +391,7 @@ export const trackRecordsTrack: TableHandler = {
       },
       {
         name: "Best Lap Time",
-        class: "justify-end",
+        class: "justify-end text-right",
         sortable: true,
         property: "bestLapTime",
         get hidden() {
@@ -400,7 +400,7 @@ export const trackRecordsTrack: TableHandler = {
       },
       {
         name: "Date",
-        class: "justify-start",
+        class: "justify-end text-right",
         sortable: true,
         property: "createdDate",
       },
@@ -482,13 +482,13 @@ export const trackRecordsTrackCar: TableHandler = {
     header: [
       {
         name: "Rank",
-        class: "justify-end",
+        class: "justify-end text-right",
         sortable: true,
         property: "rank",
       },
       {
         name: "Lap Time",
-        class: "justify-end",
+        class: "justify-end text-right",
         sortable: true,
         property: "lapTime",
         get hidden() {
@@ -497,7 +497,7 @@ export const trackRecordsTrackCar: TableHandler = {
       },
       {
         name: "Avg Lap Time",
-        class: "justify-end",
+        class: "justify-end text-right",
         sortable: true,
         property: "avgLapTime",
         get hidden() {
@@ -511,7 +511,7 @@ export const trackRecordsTrackCar: TableHandler = {
       },
       {
         name: "S1",
-        class: "justify-end",
+        class: "justify-end text-right",
         sortable: true,
         property: "sectorOne",
         get hidden() {
@@ -520,7 +520,7 @@ export const trackRecordsTrackCar: TableHandler = {
       },
       {
         name: "S2",
-        class: "justify-end",
+        class: "justify-end text-right",
         sortable: true,
         property: "sectorTwo",
         get hidden() {
@@ -529,7 +529,7 @@ export const trackRecordsTrackCar: TableHandler = {
       },
       {
         name: "S3",
-        class: "justify-end",
+        class: "justify-end text-right",
         sortable: true,
         property: "sectorThree",
         get hidden() {
@@ -538,7 +538,7 @@ export const trackRecordsTrackCar: TableHandler = {
       },
       {
         name: "Best Lap Time",
-        class: "justify-end",
+        class: "justify-end text-right",
         sortable: true,
         property: "bestLapTime",
         get hidden() {
@@ -547,7 +547,7 @@ export const trackRecordsTrackCar: TableHandler = {
       },
       {
         name: "Best Sectors Lap",
-        class: "justify-end",
+        class: "justify-end text-right",
         sortable: true,
         property: "bestSectorsLap",
         get hidden() {
@@ -556,7 +556,7 @@ export const trackRecordsTrackCar: TableHandler = {
       },
       {
         name: "Water on Track",
-        class: "justify-center",
+        class: "justify-center text-center",
         sortable: true,
         property: "avgPathWetness",
         get hidden() {
@@ -565,13 +565,13 @@ export const trackRecordsTrackCar: TableHandler = {
       },
       {
         name: "Date",
-        class: "justify-start",
+        class: "justify-end text-right",
         sortable: true,
         property: "createdDate",
       },
       {
         name: "Driver",
-        class: "justify-end",
+        class: "justify-end text-right",
         sortable: true,
         property: "username",
       },
