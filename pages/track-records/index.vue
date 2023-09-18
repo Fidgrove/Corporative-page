@@ -18,7 +18,7 @@ const props = defineProps<RecordsProps>();
 
 const dataOffset: Ref<number> = ref(0);
 const dataItemsLimit: Ref<number> = ref(20);
-const sortable: Ref<TableSort> = ref({ sort: "createdDate", asc: true });
+const sortable: Ref<TableSort> = ref({ sort: "createdDate", asc: false });
 const loading: Ref<boolean> = ref(false);
 const table: Ref<typeof DataTable> = ref(DataTable);
 
