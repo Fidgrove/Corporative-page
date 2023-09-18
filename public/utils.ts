@@ -604,7 +604,7 @@ export const trackRecordsTrackCar: TableHandler = {
         avgLapTime && avgLapTime > 0
           ? useSecondsToReadableTime(avgLapTime)
           : "-",
-      diff: diff ? diff.toFixed(3) : "-",
+      diff: diff ? `+${diff.toFixed(3)}` : "-",
       sectorOne: sectorOne > 0 ? useSecondsToReadableTime(sectorOne) : "-",
       sectorTwo: sectorTwo > 0 ? useSecondsToReadableTime(sectorTwo) : "-",
       sectorThree:
