@@ -113,7 +113,7 @@ const { isHeaderOnTop } = useScrollHandler(table);
                 content: handler.table.tooltip.render(row),
               }
             "
-            class="hover:bg-blue hover:text-white"
+            class="hover:bg-blue hover:text-white group"
             :class="{ 'cursor-pointer': clickableRow }"
             @click="clickableRow ? $emit('row-click', row) : null"
           >
@@ -150,6 +150,13 @@ const { isHeaderOnTop } = useScrollHandler(table);
                 {{ val }}
               </div>
             </td>
+            <template v-if="clickableRow">
+              <td class="py-1 px-2 invisible group-hover:visible">
+                <span class="w-6 h-6 block -rotate-90"
+                  ><svg-icon name="arrow"
+                /></span>
+              </td>
+            </template>
           </tr>
         </tbody>
       </table>
