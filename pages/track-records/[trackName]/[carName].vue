@@ -146,7 +146,7 @@ watch(
 
 <template>
   <section class="mt-8 mb-6 lg:mb-16 mx-auto space-y-4">
-    <div class="flex space-x-4">
+    <div class="flex flex-col space-y-4 md:space-y-0 md:space-x-4 md:flex-row">
       <BaseTag title="Track" :value="route.params.trackName" />
       <BaseTag title="Car" :value="route.params.carName" />
     </div>
