@@ -18,6 +18,6 @@ export const useApiRequest = <T>(
 export const useApiRequestReset = () => {
   return {
     offset: 0,
-    limit: 20,
+    limit: 40,
   };
 };

@@ -10,7 +10,7 @@ const toggleNav = () => (showMenu.value = !showMenu.value);
     <div class="flex justify-center items-center">
       <div>
         <NuxtLink to="/" @click="showMenu = false">
-          <img src="/img/logo.png" alt="Fidgrove" class="w-40 md:w-45" />
+          <img src="/img/logo.png" alt="Fidgrove" class="w-36" />
         </NuxtLink>
         <div class="flex md:hidden absolute right-4 top-6" @click="toggleNav">
           <button type="button">
@@ -64,13 +64,13 @@ const toggleNav = () => (showMenu.value = !showMenu.value);
         <Nuxt-link
           target="_blank"
           href="https://station.fidgrove.com/login"
-          class="ml-4 transition-colors rounded border border-blue px-3 py-1.5 text-sm font-medium hover:text-white hover:bg-blue bg-white text-blue"
+          class="w-20 ml-4 transition-colors rounded border border-blue px-2 py-1.5 text-sm font-medium text-center hover:text-white hover:bg-blue bg-white text-blue"
         >
           Login
         </Nuxt-link>
         <Nuxt-link
           to="/membership"
-          class="ml-4 transition-colors rounded border border-blue px-3 py-1.5 text-sm font-medium hover:text-white hover:bg-blue bg-white text-blue"
+          class="w-20 ml-4 transition-colors rounded border border-blue px-2 py-1.5 text-sm font-medium text-center hover:text-white hover:bg-blue bg-white text-blue"
           @click="showMenu = false"
         >
           Sign Up

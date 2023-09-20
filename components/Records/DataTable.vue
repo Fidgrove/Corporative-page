@@ -62,7 +62,7 @@ const { isHeaderOnTop } = useScrollHandler(table);
               :class="[header.hidden && 'hidden']"
             >
               <div
-                class="flex items-center"
+                class="flex items-center text-sm"
                 :class="[header.class || 'justify-end text-right']"
               >
                 <abbr class="no-underline" :title="header.name">
@@ -110,7 +110,9 @@ const { isHeaderOnTop } = useScrollHandler(table);
                   hide: 200,
                 },
                 placement: handler.table.tooltip.placement || 'bottom-end',
-                content: handler.table.tooltip.render(row),
+                content: `<span class='text-sm'>${handler.table.tooltip.render(
+                  row,
+                )}</span>`,
               }
             "
             class="hover:bg-blue hover:text-white group"
@@ -125,7 +127,7 @@ const { isHeaderOnTop } = useScrollHandler(table);
             >
               <div
                 :class="[
-                  'flex items-center',
+                  'flex items-center  text-sm',
                   handler.table.header[i].class || 'justify-end text-right',
                 ]"
               >
@@ -133,13 +135,19 @@ const { isHeaderOnTop } = useScrollHandler(table);
                   <span
                     class="shrink-0"
                     :class="{
-                      'pl-8': !handler.table.header[i].prependIcon(row),
+                      'pl-8': !handler.table.header[i].prependIcon.value(row),
                     }"
                   >
-                    <template v-if="handler.table.header[i].prependIcon(row)">
+                    <template
+                      v-if="handler.table.header[i].prependIcon.value(row)"
+                    >
                       <img
+                        v-tooltip="{
+                          html: true,
+                          ...handler.table.header[i].prependIcon.tooltip,
+                        }"
                         :alt="val.toString()"
-                        :src="`/img/${handler.table.header[i].prependIcon(
+                        :src="`/img/${handler.table.header[i].prependIcon.value(
                           row,
                         )}`"
                         class="w-6 object-contain mr-2"

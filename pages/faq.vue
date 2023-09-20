@@ -15,7 +15,7 @@ const faqSelected: Ref<number | null> = ref(0);
         "
       >
         <div>
-          <h4 class="font-medium text-xl">
+          <h4 class="font-medium">
             <span class="pr-3" v-text="idx + 1" />
             <span v-text="el.question" />
           </h4>
@@ -34,7 +34,7 @@ const faqSelected: Ref<number | null> = ref(0);
             : 'grid-rows-[0fr] opacity-0',
         ]"
       >
-        <div class="overflow-hidden" :class="{ 'mb-4': faqSelected === idx }">
+        <div class="overflow-hidden pb-4">
           <div class="ml-4" v-html="el.answer" />
           <template v-if="el.list">
             <ul

@@ -42,15 +42,17 @@ const checkTBD = (text: string) => text.includes("TBD");
         v-text="item"
       />
     </ul>
-    <div class="flex justify-center pb-5">
-      <NuxtLink
-        tag="a"
-        :href="plan.cta.link"
-        target="_blank"
-        class="rounded transition-colors border border-blue px-4 py-2 font-medium hover:text-white hover:bg-blue bg-white text-blue"
-      >
-        {{ plan.cta.text }}
-      </NuxtLink>
+    <div class="flex justify-center py-5">
+      <template v-if="plan.cta">
+        <NuxtLink
+          tag="a"
+          :href="plan.cta.link"
+          target="_blank"
+          class="w-64 flex flex-col items-center rounded transition-colors border border-blue px-4 py-2 font-medium text-center hover:text-white hover:bg-blue bg-white text-blue"
+        >
+          {{ plan.cta.text }}
+        </NuxtLink>
+      </template>
     </div>
   </div>
 </template>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 interface tagProps {
   title: string;
-  value: string;
+  value: string | string[];
 }
 
 const props = defineProps<tagProps>();

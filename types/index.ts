@@ -14,7 +14,7 @@ export interface Plan {
   subtitle?: string;
   items: string[];
   price: { origin?: string; actual: string; period?: string };
-  cta: { text: string; link: string };
+  cta?: { text: string; link: string };
 }
 
 export interface FaqItem {
@@ -33,7 +33,14 @@ interface TableHeader {
   class?: string;
   hidden?: boolean;
   sortable?: boolean;
-  prependIcon?: (val: any) => string;
+  prependIcon?: {
+    value: (val: any) => string;
+    tooltip: {
+      placement?: string;
+      content?: string | ((val: any) => string);
+      delay?: { show: number; hide: number };
+    };
+  };
 }
 
 export interface Table {

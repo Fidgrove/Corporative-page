@@ -20,7 +20,7 @@ export const navigation: MenuItem[] = [
 export const features: Feature[] = [
   {
     title: "Sim support: rFactor 2",
-    image: "sessions.png",
+    image: "sim_support.png",
     text: `<p class="pb-4">Sim support is done through the installation of Fidgrove’s DataLogger. No configuration is required, and Fidgrove will automatically detect the supported sims.</p>
     <p class="pb-4">Fidgrove supports <a href="https://www.studio-397.com/" target="_blank" class="text-blue">rFactor 2 </a> esports platform, and all its content. Fidgrove keeps track of all version numbers of the cars & tracks, using file hashes. This makes it possible to validate if the content is different from previous versions, or if it has been tampered with (e.g., car physics). Different versions will be marked as such. In some cases, Fidgrove uses “sub-versions”, which means content with same version but slightly different (e.g., car impacted by Balance of Performance).</p>
   <p class="pb-4">rFactor 2 allows for community mods, creating a possibility of multiple packages attempting to recreate the same car or track, with possible different characteristics. When navigating through Fidgrove’s Engineering Station, you will see this as different content altogether</p>`,
@@ -83,13 +83,7 @@ export const membershipPlans: Plan[] = [
       "Live AI-supported Race Strategy Adjustments (TBD)",
     ],
     price: {
-      origin: "12.99 €",
-      actual: "9.99 €",
-      period: "per month",
-    },
-    cta: {
-      text: "Login to order",
-      link: "https://station.fidgrove.com/login",
+      actual: "Soon",
     },
   },
   {
@@ -101,13 +95,7 @@ export const membershipPlans: Plan[] = [
       "Gives access to all features listed in the Teams Premium subscription",
     ],
     price: {
-      origin: "12.99 €",
-      actual: "9.99 €",
-      period: "per month",
-    },
-    cta: {
-      text: "Login to pay for teammate",
-      link: "https://station.fidgrove.com/login",
+      actual: "Soon",
     },
   },
 ];
@@ -223,14 +211,28 @@ export const trackRecords: TableHandler = {
         class: "justify-start text-left",
         sortable: true,
         property: "trackName",
-        prependIcon: ({ isOfficialTrack }) => isOfficialTrack,
+        prependIcon: {
+          value: ({ isOfficialTrack }) => isOfficialTrack,
+          tooltip: {
+            placement: "bottom",
+            content: `<span class='text-sm'>Content with this logo is official Studio397 content</span>`,
+            delay: { show: 200, hide: 100 },
+          },
+        },
       },
       {
         name: "Car",
         class: "justify-start text-left",
         sortable: true,
         property: "carName",
-        prependIcon: ({ isOfficialCar }) => isOfficialCar,
+        prependIcon: {
+          value: ({ isOfficialCar }) => isOfficialCar,
+          tooltip: {
+            placement: "bottom",
+            content: `<span class='text-sm'>Content with this logo is official Studio397 content</span>`,
+            delay: { show: 200, hide: 100 },
+          },
+        },
       },
       {
         name: "Lap Time",
@@ -322,11 +324,11 @@ export const trackRecordsTrack: TableHandler = {
     tooltip: {
       render(row: RecordsTrackTableRow) {
         const { trackTemperature, avgPathWetness, trackVersion } = row;
-        const waterOnTrackTooltip = `<b class="pr-1 font-medium tabular-nums lining-nums"">Water on Track:</b> ${avgPathWetness}<br />`;
+        const waterOnTrackTooltip = `<b class="pr-1 font-medium tabular-nums lining-nums">Water on Track:</b> ${avgPathWetness}<br />`;
         return `
-					<b class="pr-1 font-medium tabular-nums lining-nums"">Track Temperature:</b> ${trackTemperature}<br />
+					<b class="pr-1 font-medium tabular-nums lining-nums">Track Temperature:</b> ${trackTemperature}<br />
 					${trackRecordsTrack.wetSession ? waterOnTrackTooltip : ""}
-					<b class="pr-1 font-medium tabular-nums lining-nums"">Track Version:</b> ${trackVersion}
+					<b class="pr-1 font-medium tabular-nums lining-nums">Track Version:</b> ${trackVersion}
 				`;
       },
     },
@@ -336,7 +338,14 @@ export const trackRecordsTrack: TableHandler = {
         class: "justify-start text-left",
         sortable: true,
         property: "carName",
-        prependIcon: ({ isOfficialCar }) => isOfficialCar,
+        prependIcon: {
+          value: ({ isOfficialCar }) => isOfficialCar,
+          tooltip: {
+            placement: "bottom",
+            content: `<span class='text-sm'>Content with this logo is official Studio397 content</span>`,
+            delay: { show: 200, hide: 100 },
+          },
+        },
       },
       {
         name: "Class",
@@ -473,9 +482,9 @@ export const trackRecordsTrackCar: TableHandler = {
       render(row: RecordsTrackCarTableRow) {
         const { trackTemperature, trackVersion, carVersion } = row;
         return `
-					<b class="pr-1">Track Temperature:</b> ${trackTemperature}<br />
-					<b class="pr-1">Track Version:</b> ${trackVersion} <br />
-					<b class="pr-1">Car Version:</b> ${carVersion}
+					<b class="pr-1 font-medium tabular-nums lining-nums">Track Temperature:</b> ${trackTemperature}<br />
+					<b class="pr-1 font-medium tabular-nums lining-nums">Track Version:</b> ${trackVersion} <br />
+					<b class="pr-1 font-medium tabular-nums lining-nums">Car Version:</b> ${carVersion}
 				`;
       },
     },

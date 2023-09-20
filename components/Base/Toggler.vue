@@ -10,7 +10,7 @@ const emit = defineEmits(["toggle"]);
 </script>
 
 <template>
-  <div class="flex items-center">
+  <div class="flex items-center text-sm">
     <span class="mr-3" v-text="label" />
     <label class="relative inline-flex items-center cursor-pointer">
       <input

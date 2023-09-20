@@ -20,7 +20,7 @@ const trackId = useCookie("trackId");
 const route = useRoute();
 
 const dataOffset: Ref<number> = ref(0);
-const dataItemsLimit: Ref<number> = ref(20);
+const dataItemsLimit: Ref<number> = ref(40);
 const sortable: Ref<TableSort> = ref({
   sort: props.racePaces ? "avgLapTime" : "lapTime",
   asc: true,
