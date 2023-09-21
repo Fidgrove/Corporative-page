@@ -27,6 +27,8 @@ stages:
       vmImage: $(vmImageName)
     steps:
 
+    - bash: echo 'Step1 - $(NUXT_ENV_API_URL)'
+
     - task: Docker@2
       displayName: 'Building Docker image'
       inputs:
@@ -38,6 +40,8 @@ stages:
         tags: |
           $(buildTag)
           latest
+
+    - bash: echo 'Step2 - $(NUXT_ENV_API_URL)'
 
     - task: Docker@2
       displayName: 'Push Docker image'
