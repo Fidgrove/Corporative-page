@@ -13,6 +13,44 @@ export default defineNuxtConfig({
           src: "ts/ga.ts",
         },
       ],
+      meta: [
+        { charset: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        {
+          name: "description",
+          content:
+            "Improving sim racing performance through data. Cloud-based data analytics platform",
+        },
+        {
+          name: "author",
+          content: "Fidgrove",
+        },
+        {
+          name: "og:description",
+          content:
+            "Improving sim racing performance through data. Cloud-based data analytics platform",
+        },
+        {
+          name: "og:title",
+          content: "Fidgrove",
+        },
+        {
+          name: "og:site_name",
+          content: "Fidgrove",
+        },
+        {
+          property: "og:image",
+          content: "/img/logo_meta.png",
+        },
+        {
+          property: "twitter:image",
+          content: "/img/logo_meta.png",
+        },
+        {
+          property: "twitter:card",
+          content: "summary_large_image",
+        },
+      ],
     },
   },
   runtimeConfig: {
