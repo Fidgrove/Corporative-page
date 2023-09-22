@@ -4,6 +4,15 @@ export default defineNuxtConfig({
   app: {
     head: {
       title: "Fidgrove",
+      script: [
+        {
+          src: "https://www.googletagmanager.com/gtag/js?id=G-HFHL1ZJCVF",
+          async: true,
+        },
+        {
+          src: "ts/ga.ts",
+        },
+      ],
     },
   },
   runtimeConfig: {
