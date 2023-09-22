@@ -58,7 +58,10 @@ const loadMore = async ($state: any) => {
   const { data: dataPage }: { data: Ref<RequestResponse> } =
     await getTrackRecords();
   try {
-    if (dataPage.value.metadata?.count !== 0 && dataPage.value.results.length) {
+    if (
+      dataPage.value?.metadata?.count !== 0 &&
+      dataPage.value?.results.length
+    ) {
       data.value.results = [...data.value.results, ...dataPage.value.results];
       $state.loaded();
     } else {
@@ -81,7 +84,7 @@ const onSort = async (sortParams: TableSort) => {
   if (table.value) {
     table.value.infiniteId++;
   }
-  data.value.results = dataPage.value.results;
+  data.value.results = dataPage.value?.results;
   loading.value = pending.value;
 };
 
@@ -98,7 +101,7 @@ watch(
     if (table.value) {
       table.value.infiniteId++;
     }
-    data.value.results = dataPage.value.results;
+    data.value.results = dataPage.value?.results;
     loading.value = pending.value;
   },
 );
@@ -120,7 +123,7 @@ watch(
     if (table.value) {
       table.value.infiniteId++;
     }
-    data.value.results = dataPage.value.results;
+    data.value.results = dataPage.value?.results;
     loading.value = pending.value;
   },
 );
@@ -137,7 +140,7 @@ watch(
       if (table.value) {
         table.value.infiniteId++;
       }
-      data.value.results = dataPage.value.results;
+      data.value.results = dataPage.value?.results;
       loading.value = pending.value;
     }
   },
@@ -150,14 +153,22 @@ watch(
       <BaseTag title="Track" :value="route.params.trackName" />
       <BaseTag title="Car" :value="route.params.carName" />
     </div>
-    <RecordsDataTable
-      ref="table"
-      :list="data.results"
-      :handler="trackRecordsTrackCar"
-      :sortable="sortable"
-      :loading="loading"
-      @infinite-loading="loadMore"
-      @sort="onSort"
-    />
+    <ClientOnly>
+      <template #fallback>
+        <AppLoadingPlaceholder
+          type="table"
+          :columns="trackRecordsTrackCar.table.header"
+        />
+      </template>
+      <RecordsDataTable
+        ref="table"
+        :list="data?.results || []"
+        :handler="trackRecordsTrackCar"
+        :sortable="sortable"
+        :loading="loading"
+        @infinite-loading="loadMore"
+        @sort="onSort"
+      />
+    </ClientOnly>
   </section>
 </template>

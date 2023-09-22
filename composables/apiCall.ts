@@ -11,6 +11,7 @@ export const useApiRequest = <T>(
     query: {
       ...params,
     },
+    server: false,
     ...options,
   });
 };

@@ -66,7 +66,10 @@ const loadMore = async ($state: any) => {
   const { data: dataPage }: { data: Ref<RequestResponse> } =
     await getTrackRecords();
   try {
-    if (dataPage.value.metadata?.count !== 0 && dataPage.value.results.length) {
+    if (
+      dataPage.value?.metadata?.count !== 0 &&
+      dataPage.value?.results.length
+    ) {
       data.value.results = [...data.value.results, ...dataPage.value.results];
       $state.loaded();
     } else {
@@ -89,7 +92,7 @@ const onSort = async (sortParams: TableSort) => {
   if (table.value) {
     table.value.infiniteId++;
   }
-  data.value.results = dataPage.value.results;
+  data.value.results = dataPage.value?.results;
   loading.value = pending.value;
 };
 
@@ -106,7 +109,7 @@ watch(
     if (table.value) {
       table.value.infiniteId++;
     }
-    data.value.results = dataPage.value.results;
+    data.value.results = dataPage.value?.results;
     loading.value = pending.value;
   },
 );
@@ -130,7 +133,7 @@ watch(
     if (table.value) {
       table.value.infiniteId++;
     }
-    data.value.results = dataPage.value.results;
+    data.value.results = dataPage.value?.results;
     loading.value = pending.value;
   },
 );
@@ -148,7 +151,7 @@ watch(
       if (table.value) {
         table.value.infiniteId++;
       }
-      data.value.results = dataPage.value.results;
+      data.value.results = dataPage.value?.results;
       loading.value = pending.value;
     }
   },
@@ -157,16 +160,22 @@ watch(
 
 <template>
   <section class="mt-8 mb-6 lg:mb-16 mx-auto">
-    <RecordsDataTable
-      ref="table"
-      :list="data.results"
-      :handler="trackRecords"
-      :sortable="sortable"
-      :loading="loading"
-      clickable-row
-      @infinite-loading="loadMore"
-      @sort="onSort"
-      @row-click="linkToNextLevel"
-    />
+    <ClientOnly>
+      <AppLoadingPlaceholder
+        type="table"
+        :columns="trackRecords.table.header"
+      />
+      <RecordsDataTable
+        ref="table"
+        :list="data?.results || []"
+        :handler="trackRecords"
+        :sortable="sortable"
+        :loading="loading"
+        clickable-row
+        @infinite-loading="loadMore"
+        @sort="onSort"
+        @row-click="linkToNextLevel"
+      />
+    </ClientOnly>
   </section>
 </template>
