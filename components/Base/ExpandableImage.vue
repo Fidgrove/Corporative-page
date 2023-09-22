@@ -11,10 +11,10 @@ const zoomImage: Ref<boolean> = ref(false);
 
 <template>
   <section
-    class="cursor-pointer z-10"
+    class="cursor-pointer"
     :class="[
       zoomImage
-        ? 'absolute flex items-center justify-center bg-black px-4 md:px-10 top-0 left-0 w-full h-full'
+        ? 'absolute flex items-center justify-center bg-black px-4 md:px-10 top-0 left-0 w-full h-full z-10'
         : `border-blue border rounded overflow-hidden ${addClass || ''}`,
     ]"
     @click="zoomImage = !zoomImage"
