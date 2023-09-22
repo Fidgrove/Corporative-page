@@ -42,7 +42,7 @@ export const features: Feature[] = [
   },
   {
     title: "Trackside Station: real-time data",
-    image: "community.png",
+    image: "dashboard.png",
     text: `<p class="pb-4">Fidgrove’s Trackside Station is the best place to follow the action in real time. This is similar to the Engineering Station in the sense that you’re accessing it through the browser, but it’s focused on seeing your live data or your teammate’s. You can track live performance through a cockpit data page, a timetables page, leaderboard, and real-time telemetry analyzer. </p><p class="pb-4">The cockpit data page shows a dashboard with information you could see in modern steering wheels. This includes speed, gear, RPM, fuel info, tire info, lap/sector times, etc. </p><p class="pb-4">The timetables page is a good place to follow lap performance as it happens. You can choose which type of performance indicator you’d like to focus on (e.g., time, min/avg/max speeds), and you’ll see this displayed for sectors and laps as they happen. </p><p class="pb-4">The leaderboard page is self-explanatory, but it does include sidebars with a map tracker on the left, and a performance analyzer on the right side. The latter is useful to check what are the paces of everyone in the field, as well as compare gaps to direct competitors. </p><p class="pb-4">The telemetry page aims to be an easy way to check if all key telemetry channels show expected performance, or if there are outliers. By easily having a time rolling window shown or a full lap time in view, and by having a comparable lap as well as current one, a team can easily spot issues and take proper measures immediately. </p><p class="pb-4">Additional pages are planned for the future, including strategy related pages.</p>`,
   },
   {
@@ -155,8 +155,8 @@ export const faq: FaqItem[] = [
   },
   {
     question: "In which way is Fidgrove innovating?",
-    answer: `<p class="pb-4">We believe the path should be to have real-time computing on all data available, delivering insights on how to improve performance immediately. That’s not the easy path, but it should be the right path to the solution that drivers and teams need. </p>
-<p class="pb-4">As such, we have implemented the latest data stack technology that enables real-time computing with very low latency, making Fidgrove’s Trackside Station a great platform for future features. Furthermore, we are also creating our own path through research  in the field. XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>`,
+    answer: `<p class="pb-4">We believe the path should be to have real-time computing on all data available, delivering insights on how to improve performance immediately. That’s not the easy path, but it should be the right path to the solution that drivers and teams need.</p>
+<p class="pb-4">As such, we have implemented the latest data stack technology that enables real-time computing with very low latency, making Fidgrove’s Trackside Station a great platform for future features. Furthermore, we are also creating our own path through research in the field. We have partnered with a University for joint R&D projects related to automated insights from telemetry and autonomous racing cars. For example, we can now identify the driver (and its driving style) based solely on telemetry. This will have several benefits for automated suggestions on how to improve performance, regarding both setup adjustments and driving improvements.</p>`,
   },
   {
     question: "How much do I have to pay to use Fidgrove? ",

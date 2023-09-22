@@ -34,11 +34,11 @@ const faqSelected: Ref<number | null> = ref(0);
             : 'grid-rows-[0fr] opacity-0',
         ]"
       >
-        <div class="overflow-hidden pb-4">
+        <div class="overflow-hidden pb-4 pl-2">
           <div class="ml-4" v-html="el.answer" />
           <template v-if="el.list">
             <ul
-              class="list-outside ml-8"
+              class="list-outside ml-4"
               :class="{
                 'list-disc': el.list.type === 'mark',
                 'list-[lower-alpha]': el.list.type === 'letter',
@@ -53,7 +53,7 @@ const faqSelected: Ref<number | null> = ref(0);
             </ul>
           </template>
           <template v-if="el.addText">
-            <div class="mt-4" v-html="el.addText" />
+            <div class="mt-4 pl-4" v-html="el.addText" />
           </template>
         </div>
       </div>
