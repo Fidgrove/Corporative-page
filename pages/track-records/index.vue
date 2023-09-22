@@ -164,7 +164,7 @@ watch(
       <template #fallback>
         <AppLoadingPlaceholder
           type="table"
-          :columns="trackRecordsTrack.table.header"
+          :columns="trackRecords.table.header"
         />
       </template>
       <RecordsDataTable
