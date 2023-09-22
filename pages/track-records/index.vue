@@ -161,10 +161,12 @@ watch(
 <template>
   <section class="mt-8 mb-6 lg:mb-16 mx-auto">
     <ClientOnly>
-      <AppLoadingPlaceholder
-        type="table"
-        :columns="trackRecords.table.header"
-      />
+      <template #fallback>
+        <AppLoadingPlaceholder
+          type="table"
+          :columns="trackRecordsTrack.table.header"
+        />
+      </template>
       <RecordsDataTable
         ref="table"
         :list="data?.results || []"
