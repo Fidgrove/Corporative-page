@@ -5,6 +5,9 @@ WORKDIR /src
 ARG NUXT_ENV_API_URL
 ENV NUXT_ENV_API_URL ${NUXT_ENV_API_URL}
 
+ARG NUXT_ENV_GTM
+ENV NUXT_ENV_GTM ${NUXT_ENV_GTM}
+
 COPY package*.json ./
 # Runs the "npm ci" command to install the dependencies specified in the package-lock.json file.
 RUN npm install -g npm && npm ci

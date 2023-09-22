@@ -34,7 +34,7 @@ stages:
         repository: $(dockerImageName)
         dockerfile: '$(pathDockerFile)'
         containerRegistry: $(dockerRegistryServiceConnection)
-        arguments: --build-arg NUXT_ENV_API_URL=$(NUXT_ENV_API_URL)
+        arguments: --build-arg NUXT_ENV_API_URL=$(NUXT_ENV_API_URL) --build-arg NUXT_ENV_GTM=$(NUXT_ENV_GTM)
         tags: |
           $(buildTag)
           latest
