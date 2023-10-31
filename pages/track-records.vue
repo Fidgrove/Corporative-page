@@ -4,6 +4,7 @@ import { onMounted } from "vue";
 const searchQuery: Ref<string> = ref("");
 const racePaces: Ref<boolean> = ref(false);
 const dry: Ref<boolean> = ref(true);
+const isRF2: Ref<boolean> = ref(true);
 const input: Ref<HTMLInputElement | null> = ref(null);
 
 const route = useRoute();
@@ -50,6 +51,14 @@ watch(
         placeholder="Search car or track"
       />
       <div class="flex space-x-10">
+        <template v-if="route.name === 'track-records'">
+          <BaseToggler
+            label="rFactor2"
+            right-label="iRacing"
+            :value="isRF2"
+            @toggle="isRF2 = !isRF2"
+          />
+        </template>
         <BaseToggler
           label="Dry"
           right-label="Wet"
@@ -64,6 +73,11 @@ watch(
         />
       </div>
     </div>
-    <NuxtPage :search="searchQuery" :dry="dry" :race-paces="racePaces" />
+    <NuxtPage
+      :search="searchQuery"
+      :dry="dry"
+      :race-paces="racePaces"
+      :is-rfactor2="isRF2"
+    />
   </section>
 </template>

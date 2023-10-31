@@ -13,6 +13,7 @@ interface RecordsProps {
   search: string;
   dry: boolean;
   racePaces: boolean;
+  isRfactor2: boolean;
 }
 const props = defineProps<RecordsProps>();
 
@@ -44,6 +45,11 @@ const getTrackRecords = (reset = false): any => {
       ? "support/v1/communities/race-paces"
       : "support/v1/communities/track-records",
     params.value,
+    {
+      headers: {
+        "fidgrove-simulator": props.isRfactor2 ? "rFactor2" : "iRacing",
+      },
+    },
   );
 };
 
@@ -95,6 +101,23 @@ const onSort = async (sortParams: TableSort) => {
   data.value.results = dataPage.value?.results;
   loading.value = pending.value;
 };
+
+watch(
+  () => props.isRfactor2,
+  async () => {
+    loading.value = true;
+    const {
+      data: dataPage,
+      pending,
+    }: { data: Ref<RequestResponse>; pending: Ref<boolean> } =
+      await getTrackRecords(true);
+    if (table.value) {
+      table.value.infiniteId++;
+    }
+    data.value.results = dataPage.value?.results;
+    loading.value = pending.value;
+  },
+);
 
 watch(
   () => props.dry,
