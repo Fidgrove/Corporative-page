@@ -53,7 +53,15 @@ export default defineNuxtConfig({
       gtagId: process.env.NUXT_ENV_GTM,
     },
   },
-  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/svg-sprite", "floating-vue/nuxt"],
+  modules: [
+    "@nuxtjs/tailwindcss",
+    "@nuxtjs/svg-sprite",
+    "floating-vue/nuxt",
+    "nuxt-gtag",
+  ],
+  gtag: {
+    id: process.env.NUXT_ENV_GTM,
+  },
   css: ["@/assets/scss/main.scss"],
   router: {
     options: {
