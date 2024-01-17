@@ -55,6 +55,7 @@ export interface Table {
 export interface TableHandler {
   racePaces: boolean;
   wetSession: boolean;
+  totalSectors?: number;
   table: Table;
   mapResult: any;
 }
@@ -64,12 +65,13 @@ export interface TableSort {
   asc: boolean;
 }
 export interface RecordsTableRow {
+  trackTemperature: number;
   trackName: string;
   carName: string;
   lapTime: number;
   createdDate: string;
   username: string;
-  trackTemperature: number;
+  totalSectors: number;
   avgPathWetness: number;
   umbrellaTrackId: string;
   umbrellaCarId: string;
@@ -84,6 +86,13 @@ export interface RecordsTrackTableRow {
   sectorOne: number;
   sectorTwo: number;
   sectorThree: number;
+  sectorFour: number;
+  sectorFive: number;
+  sectorSix: number;
+  sectorSeven: number;
+  sectorEight: number;
+  sectorNine: number;
+  sectorTen: number;
   createdDate: string;
   username: string;
   trackTemperature: number;
@@ -105,6 +114,13 @@ export interface RecordsTrackCarTableRow {
   sectorOne: number;
   sectorTwo: number;
   sectorThree: number;
+  sectorFour: number;
+  sectorFive: number;
+  sectorSix: number;
+  sectorSeven: number;
+  sectorEight: number;
+  sectorNine: number;
+  sectorTen: number;
   createdDate: string;
   username: string;
   trackTemperature: number;

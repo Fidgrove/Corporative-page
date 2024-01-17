@@ -320,6 +320,7 @@ export const trackRecords: TableHandler = {
 export const trackRecordsTrack: TableHandler = {
   wetSession: false,
   racePaces: false,
+  totalSectors: 3,
   table: {
     tooltip: {
       render(row: RecordsTrackTableRow) {
@@ -399,6 +400,83 @@ export const trackRecordsTrack: TableHandler = {
         },
       },
       {
+        name: "S4",
+        class: "justify-end text-right",
+        sortable: true,
+        property: "sectorFour",
+        get hidden() {
+          return (
+            trackRecordsTrack.racePaces || trackRecordsTrack.totalSectors < 4
+          );
+        },
+      },
+      {
+        name: "S5",
+        class: "justify-end text-right",
+        sortable: true,
+        property: "sectorFive",
+        get hidden() {
+          return (
+            trackRecordsTrack.racePaces || trackRecordsTrack.totalSectors < 5
+          );
+        },
+      },
+      {
+        name: "S6",
+        class: "justify-end text-right",
+        sortable: true,
+        property: "sectorSix",
+        get hidden() {
+          return (
+            trackRecordsTrack.racePaces || trackRecordsTrack.totalSectors < 6
+          );
+        },
+      },
+      {
+        name: "S7",
+        class: "justify-end text-right",
+        sortable: true,
+        property: "sectorSeven",
+        get hidden() {
+          return (
+            trackRecordsTrack.racePaces || trackRecordsTrack.totalSectors < 7
+          );
+        },
+      },
+      {
+        name: "S8",
+        class: "justify-end text-right",
+        sortable: true,
+        property: "sectorEight",
+        get hidden() {
+          return (
+            trackRecordsTrack.racePaces || trackRecordsTrack.totalSectors < 8
+          );
+        },
+      },
+      {
+        name: "S9",
+        class: "justify-end text-right",
+        sortable: true,
+        property: "sectorNine",
+        get hidden() {
+          return (
+            trackRecordsTrack.racePaces || trackRecordsTrack.totalSectors < 9
+          );
+        },
+      },
+      {
+        name: "S10",
+        class: "justify-end text-right",
+        sortable: true,
+        property: "sectorTen",
+        get hidden() {
+          return (
+            trackRecordsTrack.racePaces || trackRecordsTrack.totalSectors < 10
+          );
+        },
+      },
+      {
         name: "Best Lap Time",
         class: "justify-end text-right",
         sortable: true,
@@ -434,6 +512,13 @@ export const trackRecordsTrack: TableHandler = {
     sectorOne,
     sectorTwo,
     sectorThree,
+    sectorFour,
+    sectorFive,
+    sectorSix,
+    sectorSeven,
+    sectorEight,
+    sectorNine,
+    sectorTen,
     bestLapTime,
     createdDate,
     username,
@@ -455,6 +540,15 @@ export const trackRecordsTrack: TableHandler = {
       sectorTwo: sectorTwo > 0 ? useSecondsToReadableTime(sectorTwo) : "-",
       sectorThree:
         sectorThree > 0 ? useSecondsToReadableTime(sectorThree) : "-",
+      sectorFour: sectorFour > 0 ? useSecondsToReadableTime(sectorFour) : "-",
+      sectorFive: sectorFive > 0 ? useSecondsToReadableTime(sectorFive) : "-",
+      sectorSix: sectorSix > 0 ? useSecondsToReadableTime(sectorSix) : "-",
+      sectorSeven:
+        sectorSeven > 0 ? useSecondsToReadableTime(sectorSeven) : "-",
+      sectorEight:
+        sectorEight > 0 ? useSecondsToReadableTime(sectorEight) : "-",
+      sectorNine: sectorNine > 0 ? useSecondsToReadableTime(sectorNine) : "-",
+      sectorTen: sectorTen > 0 ? useSecondsToReadableTime(sectorTen) : "-",
       bestLapTime:
         bestLapTime && bestLapTime > 0
           ? useSecondsToReadableTime(bestLapTime)
@@ -477,6 +571,7 @@ export const trackRecordsTrack: TableHandler = {
 export const trackRecordsTrackCar: TableHandler = {
   wetSession: false,
   racePaces: false,
+  totalSectors: 3,
   table: {
     tooltip: {
       render(row: RecordsTrackCarTableRow) {
@@ -546,6 +641,90 @@ export const trackRecordsTrackCar: TableHandler = {
         },
       },
       {
+        name: "S4",
+        class: "justify-end text-right",
+        sortable: true,
+        property: "sectorFour",
+        get hidden() {
+          return (
+            trackRecordsTrackCar.racePaces ||
+            trackRecordsTrackCar.totalSectors < 4
+          );
+        },
+      },
+      {
+        name: "S5",
+        class: "justify-end text-right",
+        sortable: true,
+        property: "sectorFive",
+        get hidden() {
+          return (
+            trackRecordsTrackCar.racePaces ||
+            trackRecordsTrackCar.totalSectors < 5
+          );
+        },
+      },
+      {
+        name: "S6",
+        class: "justify-end text-right",
+        sortable: true,
+        property: "sectorSix",
+        get hidden() {
+          return (
+            trackRecordsTrackCar.racePaces ||
+            trackRecordsTrackCar.totalSectors < 6
+          );
+        },
+      },
+      {
+        name: "S7",
+        class: "justify-end text-right",
+        sortable: true,
+        property: "sectorSeven",
+        get hidden() {
+          return (
+            trackRecordsTrackCar.racePaces ||
+            trackRecordsTrackCar.totalSectors < 7
+          );
+        },
+      },
+      {
+        name: "S8",
+        class: "justify-end text-right",
+        sortable: true,
+        property: "sectorEight",
+        get hidden() {
+          return (
+            trackRecordsTrackCar.racePaces ||
+            trackRecordsTrackCar.totalSectors < 8
+          );
+        },
+      },
+      {
+        name: "S9",
+        class: "justify-end text-right",
+        sortable: true,
+        property: "sectorNine",
+        get hidden() {
+          return (
+            trackRecordsTrackCar.racePaces ||
+            trackRecordsTrackCar.totalSectors < 9
+          );
+        },
+      },
+      {
+        name: "S10",
+        class: "justify-end text-right",
+        sortable: true,
+        property: "sectorTen",
+        get hidden() {
+          return (
+            trackRecordsTrackCar.racePaces ||
+            trackRecordsTrackCar.totalSectors < 10
+          );
+        },
+      },
+      {
         name: "Best Lap Time",
         class: "justify-end text-right",
         sortable: true,
@@ -597,6 +776,13 @@ export const trackRecordsTrackCar: TableHandler = {
     sectorOne,
     sectorTwo,
     sectorThree,
+    sectorFour,
+    sectorFive,
+    sectorSix,
+    sectorSeven,
+    sectorEight,
+    sectorNine,
+    sectorTen,
     bestLapTime,
     bestSectorsLap,
     avgPathWetness,
@@ -618,7 +804,15 @@ export const trackRecordsTrackCar: TableHandler = {
       sectorTwo: sectorTwo > 0 ? useSecondsToReadableTime(sectorTwo) : "-",
       sectorThree:
         sectorThree > 0 ? useSecondsToReadableTime(sectorThree) : "-",
-
+      sectorFour: sectorFour > 0 ? useSecondsToReadableTime(sectorFour) : "-",
+      sectorFive: sectorFive > 0 ? useSecondsToReadableTime(sectorFive) : "-",
+      sectorSix: sectorSix > 0 ? useSecondsToReadableTime(sectorSix) : "-",
+      sectorSeven:
+        sectorSeven > 0 ? useSecondsToReadableTime(sectorSeven) : "-",
+      sectorEight:
+        sectorEight > 0 ? useSecondsToReadableTime(sectorEight) : "-",
+      sectorNine: sectorNine > 0 ? useSecondsToReadableTime(sectorNine) : "-",
+      sectorTen: sectorTen > 0 ? useSecondsToReadableTime(sectorTen) : "-",
       bestLapTime:
         bestLapTime && bestLapTime > 0
           ? useSecondsToReadableTime(bestLapTime)

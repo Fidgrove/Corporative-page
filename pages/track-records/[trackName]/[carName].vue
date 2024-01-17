@@ -35,6 +35,12 @@ const params = computed<RequestParams>(() => {
   };
 });
 
+const totalSectors = computed<number>(() =>
+  data.value && data.value.results.length
+    ? data.value.results[0].totalSectors
+    : 3,
+);
+
 const getTrackRecords = (reset = false): any => {
   if (reset) {
     const { offset, limit } = useApiRequestReset();
@@ -52,6 +58,7 @@ const getTrackRecords = (reset = false): any => {
 const { data }: { data: Ref<RequestResponse> } = await getTrackRecords();
 trackRecordsTrackCar.wetSession = !props.dry;
 trackRecordsTrackCar.racePaces = props.racePaces;
+trackRecordsTrackCar.totalSectors = totalSectors.value;
 
 const loadMore = async ($state: any) => {
   dataOffset.value += dataItemsLimit.value;
@@ -145,6 +152,8 @@ watch(
     }
   },
 );
+
+watch(totalSectors, (val) => (trackRecordsTrackCar.totalSectors = val));
 </script>
 
 <template>
