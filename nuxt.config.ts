@@ -50,7 +50,6 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       appUrl: process.env.NUXT_ENV_API_URL || "http://localhost:3000",
-      gtagId: process.env.NUXT_ENV_GTM,
     },
   },
   modules: [
