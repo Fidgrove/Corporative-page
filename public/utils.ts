@@ -26,6 +26,14 @@ export const features: Feature[] = [
   <p class="pb-4">rFactor 2 allows for community mods, creating a possibility of multiple packages attempting to recreate the same car or track, with possible different characteristics. When navigating through Fidgrove’s Engineering Station, you will see this as different content altogether</p>`,
   },
   {
+    title: "Sim support: iRacing",
+    image: "iracing.png",
+    text: `<p class="pb-4">Sim support is done through the installation of Fidgrove’s DataLogger. No configuration is required, and Fidgrove will automatically detect the supported sims.</p>
+    <p class="pb-4">Fidgrove supports iRacing. Our platform uses an innovative hybrid data source process to get hundreds of variables at a high debit rate, taking into account the different ways iRacing shares data (i.e., API data gathering + data files). As data is gathered from different sources, it is synchronized and stored in an indexed easy-to-analyze format. In addition, real-time computation is done on this data, so insights are readily available. </p>
+  <p class="pb-4">This technology, developed in-house, enables Fidgrove to provide unique features. These go from easily browsing sessions or searching for setups through our Engineering Station, to sharing live telemetry with teammates during ongoing events.</p>
+  <p class="pb-4">Complex data analyses are also readily available for iRacing data, and easily done in the Engineering Station. These include looking at simple charts for different variables (e.g. tire wear vs lap time, frequency chart for lap times), contrasting setups’ performance, and comparing performances of teammates in specific circumstances (e.g., track temp = X, tire compound = Y, cold tire pressures > Z, etc.).</p>`,
+  },
+  {
     title: "Effortless Data Management",
     image: "r_factor.png",
     text: `<p class="pb-4">In order to have proper telemetry analysis, we need to have a good understanding and structure of the data. Fidgrove automated and integrated this process from the beginning. Real-time computing is used on the detailed telemetry logged, in order to create the right data stack. This has several benefits, including enabling Fidgrove to more easily add features that are usable on previously logged data. </p><p class="pb-4">From a user’s point of view, effortless data management can be seen with the fact that:</p>`,
